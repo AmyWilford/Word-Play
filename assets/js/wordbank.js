@@ -1,7 +1,8 @@
 // function to get local storage and present stored word buttons
 let wordBankEl = document.getElementById('word-bank');
+let homeButtonEl = document.getElementById('home-button')
 
-let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel']
+let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', ['Drucilla']]
 
 // Function to push buttons to page
 function showWords(array){
@@ -13,10 +14,15 @@ function showWords(array){
     };
 }
 
-showWords(wordArray);
+// function to go back to home page
+function goHome() {
+    document.location.href ='index.html'
+}
 
-// load stats bar (possibly tailwind)
+showWords(wordArray);
+homeButtonEl.addEventListener('click', goHome);
+
 // event listener on each word to get correct info possibly from API fetch - get same word details as at end of each round
-// button to go back to home page
 // function delete words 
 
+// load stats bar (possibly tailwind)
