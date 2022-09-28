@@ -1,6 +1,10 @@
 // set up home screen
 // with event listeners for start game and word bank
 // function to choose random number between 5 & 9
+function randomNumber () {
+    var randomNumber = Math.floor(Math.random() * 5)+5;
+    console.log(randomNumber);
+  }
 // set up API fetch for random word generator - https://random-word-api.herokuapp.com/word?length=
 // check word bank to see if word alread exists, refetch if it does, else continue
 // set up API fetch for Dictionary with that word - 
