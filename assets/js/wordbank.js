@@ -3,6 +3,7 @@ let wordBankEl = document.getElementById('word-bank');
 
 let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel']
 
+// Function to push buttons to page
 function showWords(array){
     for(let i=0; i<wordArray.length; i++) {
         let wordButtons = document.createElement('button');
