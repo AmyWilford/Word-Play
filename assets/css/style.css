@@ -31,7 +31,7 @@ main {
     margin: 5px 5px;
 }
 
-#button-footer {
+.button-footer {
     position: absolute;
     bottom: 0;
 }
