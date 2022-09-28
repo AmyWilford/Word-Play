@@ -6,6 +6,18 @@ function randomNumber () {
     console.log(randomNumber);
   }
 // set up API fetch for random word generator - https://random-word-api.herokuapp.com/word?length=
+function wordGen(){
+fetch(`https://random-word-api.herokuapp.com/word?length=6`)
+    .then(function (response) {
+    return response.json();
+    })
+    .then(function (data) {
+    console.log(data)
+    console.log(data[0])
+    let ranWord = data[0]
+    console.log(ranWord)
+})}
+wordGen()
 // check word bank to see if word alread exists, refetch if it does, else continue
 // set up API fetch for Dictionary with that word - 
 // function to create appropriate number of blank spaces based on word picked
