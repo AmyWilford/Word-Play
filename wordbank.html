@@ -11,16 +11,15 @@
 
 <body>
     <main>
-        <section>
-            <header>
-                <div>Word Bank</div>
-            </header>
-            <div id="word-bank"></div>
-            <!-- words buttons to be flex-wrapped in flex box row-->
-            <!-- modal to show details -->
-            <div>
-               <div>stats</div> 
-               <button>Home</button>
+        <section class="m-5">
+            <h2 >Word Bank</h2>
+            <div id="word-bank" class="mt-5 d-flex flex-wrap">
+                <!-- Wordbank word buttons appended here -->
+                <!-- modal to show details -->
+            </div>
+            <div id="button-footer" class="row p-4 col-12">
+               <div id="stats" class="col-8 mr-4 bg-dark text-white">stats</div> 
+               <button id="home-button" class="btn btn-warning col-2" type="button">home</button>
             </div>
         </section>
     </main>

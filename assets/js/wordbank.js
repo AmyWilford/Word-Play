@@ -6,11 +6,11 @@ let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 
 // Function to push buttons to page
 function showWords(array){
     for(let i=0; i<wordArray.length; i++) {
-        let wordButtons = document.createElement('button');
-        wordButtons.textContent =wordArray[i];
-        console.log(wordButtons);
-        wordBankEl.append(wordButtons);
-    }
+        let wordButton = document.createElement('button');
+        wordButton.classList.add('custom-button');
+        wordButton.textContent =wordArray[i];
+        wordBankEl.append(wordButton);
+    };
 }
 
 showWords(wordArray);

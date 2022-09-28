@@ -9,6 +9,7 @@ main {
     border-radius: 20px;
     margin: 50px;
     height: 75vh;
+    position: relative;
 }
 #hint-area {
     height: 400px;
@@ -21,3 +22,16 @@ main {
     display: none;
 }
 
+
+/* wordbank styles */
+.custom-button {
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: none;
+    margin: 5px 5px;
+}
+
+#button-footer {
+    position: absolute;
+    bottom: 0;
+}
