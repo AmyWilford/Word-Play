@@ -1,4 +1,4 @@
-let wordBank =[]
+let wordBank =loadStorage();
 let ranWordObj;
 
 let startBtn = document.getElementById('start-btn')
@@ -47,7 +47,6 @@ function getHints(ranWord){
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
         // makes sureall parts of word are taken from same usage
-        let antOne;
         let wordCat = Math.floor(Math.random() * data.length)
         let hintDef = "Short Definition: " + data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
@@ -56,15 +55,16 @@ function getHints(ranWord){
 
         ranWordObj = {
             word: ranWord,
-            synonym: synOne,
-            antonym: antOne,
+            synonym: hintSyns,
+            // antonym: antOne,
             definition: hintDef,
             // partofSpeech: speechPart
         };
 
         wordBank.push(ranWordObj);
         console.log(wordBank);
-        localStorage.setItem('wordBank', JSON.stringify(wordBank));
+    
+        localStorage.setItem('word-bank', JSON.stringify(wordBank));
 
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
@@ -89,19 +89,17 @@ wordGen()
 // function to handle guess input and reveal letters as guessed
 // function to reveal final answer on win or loss
 // function to clear hint and guess area and replace with definition etc.
-// function to localstorage.setItem word bank (array)
 // function to get next clue after wrong guess or clue request
 // function to loop back and pick new word
 // function to update stats
 // function to change location to wordbank.html
 
-
+function loadStorage() {
+    let loadedStorage = JSON.parse(localStorage.getItem('word-bank'));
+    return loadedStorage;
+}
 
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
-// wbBtn.addEventListener('click', openWB)
-
-
-// Local Storage
-    
+// wbBtn.addEventListener('click', openWB)    
 
