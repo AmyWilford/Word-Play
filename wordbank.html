@@ -14,15 +14,18 @@
 
 <body>
     <main>
-        <section class="m-5">
-            <h2 >Word Bank</h2>
-            <div id="word-bank" class="mt-5 d-flex flex-wrap">
+        <section class="m-5 row">
+            <h1>word bank: </h1>
+            <div id="word-bank" class="mt-5 d-flex w-100 flex-wrap">
                 <!-- Wordbank word buttons appended here -->
                 <!-- modal to show details -->
             </div>
-            <div class="button-footer row pb-4 col-12">
-               <div id="stats" class="col-12 col-sm-8 mr-4 bg-dark text-white">statsbar</div> 
-               <button id="home-button" class="btn btn-warning col-12 col-sm-2" type="button">home</button>
+            <div class="button-footer d-flex w-100 pb-4 justify-content-between">
+              <div class="bg-light w-75">stats bar</div>
+              <button id="home-button" class="standard-button" type="button">home</button>
+            </div>
+            
+              
             </div>
         </section>
     </main>
@@ -44,7 +47,7 @@
               <p id="word-antonym">Antonym:</p>
               <p id="word-phrase">Phrase:</p>
               <p id="dict-link"></p>
-              <button type="button" class="btn btn-danger" id="delete-word">Delete Word</button>
+              <button type="button" class="btn btn-secondary" id="delete-word">Delete Word</button>
             </div>
         </div>
       </div>

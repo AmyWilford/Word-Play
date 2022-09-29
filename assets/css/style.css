@@ -5,26 +5,28 @@
     color: #031C3D;
     font-family:'Open Sans', sans-serif;
 }
+h1,
+h2 {
+    font-family:'Rokkitt', serif;
+    font-weight: 300;
+}
 
 main {
     border: 15px solid #031C3D;
-    border-radius: 20px;
     margin: 50px;
-    height: 75vh;
+    min-height: 75vh;
     position: relative;
 }
 
 .standard-button {
     text-transform: uppercase;
-    letter-spacing: .1rem;
+    letter-spacing: .15rem;
     background-color: #FF1616;
-    font-size: 1.25rem;
     color: white;
     margin: 20px;
-    padding: 0.4rem;
+    padding: 0.4rem 3rem;
     border-radius: 10px;
     border: 4px solid #FF1616;
-    width: 200px;
 }
 .standard:hover {
     background-color: white;
@@ -42,7 +44,7 @@ main {
     min-height: 75vh;
     display: flex;
     align-items: center;
-    /* display: none; */
+    display: none;
 }
 .custom-title {
     font-family:'Rokkitt', serif;
@@ -53,16 +55,23 @@ main {
 
 /* Gameplay Styles */
 
-#play-game {
+/* #play-game {
     display: none;
-}
+} */
 
+.hint-item {
+    background-color: #EDE3E3;
+    border-radius: 20px;
+    padding: 40px;
+    width: 40%;
+}
 /* wordbank styles */
 .custom-button {
-    padding: 5px 20px;
+    padding: .5rem 3rem;
     border-radius: 20px;
     border: none;
-    margin: 5px 5px;
+    margin: .5rem;
+    font-size: 1.25rem;
 }
 
 .button-footer {
@@ -70,3 +79,11 @@ main {
     bottom: 0;
 }
 
+#word-guess {
+    position: absolute;
+    bottom: 0;
+}
+#letterbank {
+    border: 4px solid #031C3D;
+    margin: 20px;
+}

@@ -31,17 +31,30 @@
      <!-- Game Play Section -->
      <section id="play-game">
       <div id="hint-area" class="p-4">
-        <h3>hint:</h3>
+        <div class="hint-item">I am a hint</div>
       </div>
-      <div id="word-guess" class="d-flex flex-direction-column m-3 justify-content-center">
-        <form id="submitform">
-          <input id="letter-input" type="text" class="form-control w-25" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </form>
-      </div>
-      <div class="word-blanks"></div>  
-      <div class="text-right" id="showletter">
-          <button class="btn btn-warning btn-lg m-5" role ="button">request clue</button>
-      </div>
+      <!-- <div class="row w-100"> -->
+        <div id="word-guess" class="row m-4 d-flex w-100">
+          <div class="col-7 d-flex flex-column">
+            <div class="word-blanks"> _ _ _ _ _ _</div>  
+            <form id="submitform">
+              <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </form>
+          </div>
+          <div class="d-flex col-5 flex-column">
+            <div class="d-flex justify-content-end">
+              <button id="showletter" class="standard-button" role="button">request hint</button>
+              <button class="standard-button" role ="button">new word</button>
+            </div>
+            <div id="letterbank" class="text-right">
+              <p>Letter Bank</p>
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+      
+      
+      
     </section>
     </main>
 
