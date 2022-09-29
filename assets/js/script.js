@@ -5,6 +5,7 @@ let ranWordObj;
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
 let homeScreenEl = document.getElementById('home-page')
+let gamePlayEL = document.getElementById('play-game')
 
 // set up home screen
 // function to choose random number between 5 & 9
@@ -15,6 +16,7 @@ function startGame(){
     wordGen()
     console.log("game starting")
     homeScreenEl.style.display='none'
+    gamePlayEL.style.display='block'
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
