@@ -1,4 +1,5 @@
 let wordBank =[]
+let hints = []
 
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
@@ -51,11 +52,15 @@ function getHints(ranWord){
              console.log(hintAnts)
              let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
+             hints.push(antOne)
             }
         let speechPart = "Part-of-speech: " + data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
         console.log(hintDef)
+        // adds hints to an array to be used when revealing hints
+        hints.push(speechPart, synOne, hintDef)
+        console.log(hints)
     }
     })}
 
