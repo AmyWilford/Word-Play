@@ -1,13 +1,21 @@
 let wordBank =loadStorage();
 let ranWordObj;
 
+
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
+let homeScreenEl = document.getElementById('home-page')
 
 // set up home screen
 // function to choose random number between 5 & 9
 // var randomNumber = Math.floor(Math.random() * 5)+5;
 // console.log(randomNumber)
+
+function startGame(){
+    wordGen()
+    console.log("game starting")
+    homeScreenEl.style.display='none'
+}
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
@@ -58,7 +66,7 @@ function getHints(ranWord){
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
-
+        let hints = []
         ranWordObj = {
             word: ranWord,
             synonym: hintSyns,
@@ -91,7 +99,7 @@ function getHints(ranWord){
     })}
 
 
-wordGen()
+// wordGen()
 // function to create appropriate number of blank spaces based on word picked
 // function to pull clue elements from the word & store clue elements
 // function to handle guess input and reveal letters as guessed
@@ -109,6 +117,6 @@ function loadStorage() {
 
 
 // with event listeners for start game and word bank
-// startBtn.addEventListener('click', startGame);
+startBtn.addEventListener('click', startGame);
 // wbBtn.addEventListener('click', openWB)    
 
