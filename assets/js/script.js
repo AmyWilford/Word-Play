@@ -1,3 +1,5 @@
+let wordBank =[]
+
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
 
@@ -19,9 +21,53 @@ fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
     console.log(data[0])
     let ranWord = data[0]
     console.log(ranWord)
+   // check word bank to see if word alread exists, refetch if it does, else continue
+    if (wordBank.includes(ranWord)){
+        wordGen()
+    }
+    else {getHints(ranWord)}
 })}
 
-// wordGen()
+//API fetch for Dictionary with that word - 
+function getHints(ranWord){
+    fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`)
+    .then(function (response) {
+    return response.json();
+    })
+    .then(function (data) {
+    console.log(data)
+    console.log(data.length)
+    // makes sure it is a word with usable values in the dictionary
+    if (data.length>10){
+        wordGen()
+    }
+    else {
+        // parse data into hints and choose one from each array of synonyms and antonyms
+        // makes sureall parts of word are taken from same usage
+        let wordCat = Math.floor(Math.random() * data.length)
+        let hintDef = "Short Definition: " + data[wordCat].shortdef
+        let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
+        console.log(hintSyns)
+        let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        // runs only if word has antonyms
+        if (data[wordCat].meta.ants.length>0){
+             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
+             console.log(hintAnts)
+             let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             console.log(antOne)
+            }
+        let speechPart = "Part-of-speech: " + data[wordCat].fl
+        console.log(speechPart)  
+        console.log(synOne)
+        console.log(hintDef)
+    }
+    })}
+
+    
+
+
+
+wordGen()
 // check word bank to see if word alread exists, refetch if it does, else continue
 // set up API fetch for Dictionary with that word - 
 // function to create appropriate number of blank spaces based on word picked
@@ -36,6 +82,7 @@ fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
 // function to change location to wordbank.html
 
 
+
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
 // wbBtn.addEventListener('click', openWB)
@@ -43,5 +90,5 @@ fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
 
 // Local Storage
 function storeWords() {
-    
+
 }
