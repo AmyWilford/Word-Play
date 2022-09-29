@@ -25,7 +25,7 @@ fetch(`https://random-word-api.herokuapp.com/word?length=6`)
     else {getHints(ranWord)}
 })}
 
-// set up API fetch for Dictionary with that word - 
+//API fetch for Dictionary with that word - 
 function getHints(ranWord){
     fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`)
     .then(function (response) {
@@ -39,15 +39,22 @@ function getHints(ranWord){
         wordGen()
     }
     else {
-        let hintDef = data[0].shortdef
+        // parse data into hints
+        let hintDef = "Short Definition: " + data[0].shortdef
+        let hintSyns = data[0].meta.syns[Math.floor(Math.random()*this.length)]
+        console.log(hintSyns)
+        let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        let hintAnts =data[0].meta.ants[Math.floor(Math.random()*this.length)]
+        console.log(hintAnts)
+        let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintSyns.length)]
+        let speechPart = "Part-of-speech: " + data[0].fl
+        console.log(speechPart)  
+        console.log(synOne)
+        console.log(antOne)
         console.log(hintDef)
-        let hintSyn = data[0].meta.syns[Math.floor(Math.random()*this.length)]
-        console.log(hintSyn)
-        let hintAnt = data[0].meta.ants[Math.floor(Math.random()*this.length)]
-        console.log(hintAnt)
-        let speechPart = data[0].fl
-        console.log(speechPart)       
 
+
+     
     }
     })}
 
