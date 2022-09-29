@@ -2,6 +2,7 @@
 let wordBankEl = document.getElementById('word-bank');
 let homeButtonEl = document.getElementById('home-button')
 let modalEl = document.getElementById('wordModal');
+let modalTitle = document.getElementById('modal-title');
 
 let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', 'Drucilla'];
 let wordButton;
@@ -17,6 +18,10 @@ function showWords(array){
         // Pull API details into modal
         wordButton.addEventListener('click', function() {
             console.log(wordArray[i] + ' clicked');
+            modalTitle.textContent = wordArray[i];
+            $(document).ready(function(){
+                $("#wordModal").modal("show");
+            });
         })
     }
 }
@@ -29,6 +34,7 @@ function goHome() {
 
 showWords(wordArray);
 homeButtonEl.addEventListener('click', goHome);
+
 
 // wordButton.addEventListener('click', showModal);
 
