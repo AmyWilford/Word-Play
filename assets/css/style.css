@@ -1,0 +1,23 @@
+/* Universal styles */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    border: 4px solid black;
+    border-radius: 20px;
+    margin: 50px;
+    height: 75vh;
+}
+#hint-area {
+    height: 400px;
+}
+
+/* #play-game {
+    display: none;
+} */
+.home-page {
+    display: none;
+}
+
