@@ -1,31 +1,34 @@
 let wordBank =[]
+let ranWordObj;
 
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
 
-
 // set up home screen
 // function to choose random number between 5 & 9
 
-let storedWords =[];
 var randomNumber = Math.floor(Math.random() * 5)+5;
+
 console.log(randomNumber)
 // set up API fetch for random word generator - https://random-word-api.herokuapp.com/word?length=
 function wordGen(){
-fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
+    fetch('https://api.api-ninjas.com/v1/randomword')
+// fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
     .then(function (response) {
     return response.json();
     })
     .then(function (data) {
     console.log(data)
-    console.log(data[0])
-    let ranWord = data[0]
+    // console.log(data[0])
+    let ranWord = data.word
     console.log(ranWord)
    // check word bank to see if word alread exists, refetch if it does, else continue
     if (wordBank.includes(ranWord)){
         wordGen()
     }
-    else {getHints(ranWord)}
+    else {
+        getHints(ranWord)
+    }
 })}
 
 //API fetch for Dictionary with that word - 
@@ -44,16 +47,30 @@ function getHints(ranWord){
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
         // makes sureall parts of word are taken from same usage
+        let antOne;
         let wordCat = Math.floor(Math.random() * data.length)
         let hintDef = "Short Definition: " + data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
+
+        ranWordObj = {
+            word: ranWord,
+            synonym: synOne,
+            antonym: antOne,
+            definition: hintDef,
+            // partofSpeech: speechPart
+        };
+
+        wordBank.push(ranWordObj);
+        console.log(wordBank);
+        localStorage.setItem('wordBank', JSON.stringify(wordBank));
+
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
              let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
-             let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+            antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
             }
         let speechPart = "Part-of-speech: " + data[wordCat].fl
@@ -62,9 +79,6 @@ function getHints(ranWord){
         console.log(hintDef)
     }
     })}
-
-    
-
 
 
 wordGen()
@@ -89,6 +103,5 @@ wordGen()
 
 
 // Local Storage
-function storeWords() {
+    
 
-}
