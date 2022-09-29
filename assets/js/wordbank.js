@@ -5,21 +5,27 @@ let modalEl = document.getElementById('wordModal');
 let modalTitle = document.getElementById('modal-title');
 let wordDeleteBtn = document.getElementById('delete-word')
 
-let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', 'Drucilla'];
+// let wordBank =loadStorage();
+
+let loadedStorage = JSON.parse(localStorage.getItem('word-bank'));
+console.log(loadedStorage[i].word);
+
+// let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', 'Drucilla'];
 let wordButton;
 
 // Function to push buttons to page
 function showWords(array){
-    for(let i=0; i<wordArray.length; i++) {
+    for(let i=0; i<array.length; i++) {
+        
         wordButton = document.createElement('button');
         wordButton.classList.add('custom-button');
-        wordButton.textContent =wordArray[i];
+        wordButton.textContent =array[i];
         wordBankEl.append(wordButton);
         // add event listener to each button
         // Pull API details into modal
         wordButton.addEventListener('click', function() {
-            console.log(wordArray[i] + ' clicked');
-            modalTitle.textContent = wordArray[i];
+            console.log(array[i] + ' clicked');
+            modalTitle.textContent = array[i];
             $(document).ready(function(){
                 $("#wordModal").modal("show");
             });
@@ -33,7 +39,7 @@ function goHome() {
     document.location.href ='index.html'
 }
 
-showWords(wordArray);
+showWords(loadedStorage);
 homeButtonEl.addEventListener('click', goHome);
 
 

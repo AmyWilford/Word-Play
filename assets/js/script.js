@@ -103,7 +103,7 @@ wordGen()
 // function to change location to wordbank.html
 
 function loadStorage() {
-    let loadedStorage = JSON.parse(localStorage.getItem('word-bank'));
+    let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
     return loadedStorage;
 }
 
