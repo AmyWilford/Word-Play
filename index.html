@@ -34,20 +34,20 @@
         <div class="hint-item">I am a hint</div>
       </div>
       <!-- <div class="row w-100"> -->
-        <div id="word-guess" class="row m-4 d-flex w-100">
-          <div class="col-7 d-flex flex-column">
-            <div class="word-blanks"> _ _ _ _ _ _</div>  
+        <div id="word-guess" class="row m-3 d-flex w-100">
+          <div class="col-12 col-md-7 d-flex flex-column justify-content-end">
             <form id="submitform">
               <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </form>
-          </div>
-          <div class="d-flex col-5 flex-column">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex">
               <button id="showletter" class="standard-button" role="button">request hint</button>
               <button class="standard-button" role ="button">new word</button>
             </div>
-            <div id="letterbank" class="text-right">
-              <p>Letter Bank</p>
+          </div>
+          <div class="col-12 col-md-5 d-flex align-items-end">
+            <div id="letterbank" class="w-100 p-2">
+              <h3>letter bank: </h3>
+              <div></div>
             </div>
           </div>
         </div>
