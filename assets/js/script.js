@@ -32,8 +32,11 @@ fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
 // function to change location to wordbank.html
 
 
+<<<<<<< HEAD
+=======
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
 // wbBtn.addEventListener('click', openWB)
 
+>>>>>>> 41075a4dad48d2dee285d89ca3db02cdf9dd8b8f
 
