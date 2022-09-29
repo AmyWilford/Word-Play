@@ -6,11 +6,10 @@ let wbBtn = document.getElementById('wb=btn')
 
 // set up home screen
 // function to choose random number between 5 & 9
+// var randomNumber = Math.floor(Math.random() * 5)+5;
+// console.log(randomNumber)
 
-var randomNumber = Math.floor(Math.random() * 5)+5;
-
-console.log(randomNumber)
-// set up API fetch for random word generator - https://random-word-api.herokuapp.com/word?length=
+// set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
     fetch('https://api.api-ninjas.com/v1/randomword')
 // fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
@@ -22,8 +21,15 @@ function wordGen(){
     // console.log(data[0])
     let ranWord = data.word
     console.log(ranWord)
+    console.log(ranWord.length)
+    // check to see if word is between 5 & 9 letters
+    if (ranWord.length<5){
+        wordGen()
+    }  if (ranWord.length>9){
+        wordGen()
+    }
    // check word bank to see if word alread exists, refetch if it does, else continue
-    if (wordBank.includes(ranWord)){
+    else if (wordBank.includes(ranWord)){
         wordGen()
     }
     else {
@@ -72,18 +78,20 @@ function getHints(ranWord){
              console.log(hintAnts)
             antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
+             hints.push(antOne)
             }
         let speechPart = "Part-of-speech: " + data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
         console.log(hintDef)
+        // adds hints to an array to be used when revealing hints
+        hints.push(speechPart, synOne, hintDef)
+        console.log(hints)
     }
     })}
 
 
 wordGen()
-// check word bank to see if word alread exists, refetch if it does, else continue
-// set up API fetch for Dictionary with that word - 
 // function to create appropriate number of blank spaces based on word picked
 // function to pull clue elements from the word & store clue elements
 // function to handle guess input and reveal letters as guessed
@@ -98,6 +106,7 @@ function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank'));
     return loadedStorage;
 }
+
 
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
