@@ -63,7 +63,7 @@ function getHints(ranWord){
 
 
 
-// wordGen()
+wordGen()
 // check word bank to see if word alread exists, refetch if it does, else continue
 // set up API fetch for Dictionary with that word - 
 // function to create appropriate number of blank spaces based on word picked
@@ -76,6 +76,7 @@ function getHints(ranWord){
 // function to loop back and pick new word
 // function to update stats
 // function to change location to wordbank.html
+
 
 
 wordGen()
