@@ -32,3 +32,10 @@ wordGen()
 // function to change location to wordbank.html
 
 
+
+// function to go to wordbank on click
+function gotoWordBank() {
+  document.location.href ='wordbank.html'
+}
+let wordbankButtonEl = document.getElementById('wordbank-button');
+wordbankButtonEl.addEventListener('click', gotoWordBank);
