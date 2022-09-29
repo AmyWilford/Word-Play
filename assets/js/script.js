@@ -1,3 +1,5 @@
+let wordBank =[]
+
 // set up home screen
 // with event listeners for start game and word bank
 // function to choose random number between 5 & 9
@@ -16,10 +18,43 @@ fetch(`https://random-word-api.herokuapp.com/word?length=6`)
     console.log(data[0])
     let ranWord = data[0]
     console.log(ranWord)
+   // check word bank to see if word alread exists, refetch if it does, else continue
+    if (wordBank.includes(ranWord)){
+        wordGen()
+    }
+    else {getHints(ranWord)}
 })}
-wordGen()
-// check word bank to see if word alread exists, refetch if it does, else continue
+
 // set up API fetch for Dictionary with that word - 
+function getHints(ranWord){
+    fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`)
+    .then(function (response) {
+    return response.json();
+    })
+    .then(function (data) {
+    console.log(data)
+    console.log(data.length)
+    // makes sure it is a word with usable values in the dictionary
+    if (data.length>10){
+        wordGen()
+    }
+    else {
+        let hintDef = data[0].shortdef
+        console.log(hintDef)
+        let hintSyn = data[0].meta.syns[Math.floor(Math.random()*this.length)]
+        console.log(hintSyn)
+        let hintAnt = data[0].meta.ants[Math.floor(Math.random()*this.length)]
+        console.log(hintAnt)
+        let speechPart = data[0].fl
+        console.log(speechPart)       
+
+    }
+    })}
+
+    
+
+
+
 // function to create appropriate number of blank spaces based on word picked
 // function to pull clue elements from the word & store clue elements
 // function to handle guess input and reveal letters as guessed
@@ -32,3 +67,4 @@ wordGen()
 // function to change location to wordbank.html
 
 
+wordGen()
