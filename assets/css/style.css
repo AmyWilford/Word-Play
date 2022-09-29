@@ -89,3 +89,7 @@ main {
     min-height: 8rem;
 }
 
+#word-guess {
+    margin: 20px 0px;
+}
+

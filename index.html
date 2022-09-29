@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,300&family=Rokkitt:wght@100;300;600&display=swap" rel="stylesheet">
@@ -30,23 +31,22 @@
 
      <!-- Game Play Section -->
      <section id="play-game">
-      <div id="hint-area" class="p-4">
+      <div id="hint-area" class="m-3">
         <div class="hint-item">I am a hint</div>
       </div>
       <!-- <div class="row w-100"> -->
-        <div id="word-guess" class="row m-3 d-flex w-100">
+        <div id="word-guess" class="row d-flex w-100">
           <div class="col-12 col-md-7 d-flex flex-column justify-content-end">
-            <form id="submitform">
+            <form id="submitform" class="mr-3">
               <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </form>
-            <div class="d-flex">
+            <div class="d-flex justify-content-center">
               <button id="showletter" class="standard-button" role="button">request hint</button>
               <button class="standard-button" role ="button">new word</button>
             </div>
           </div>
           <div class="col-12 col-md-5 d-flex align-items-end">
             <div id="letterbank" class="w-100 p-2">
-              <h3>letter bank: </h3>
               <div></div>
             </div>
           </div>
