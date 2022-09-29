@@ -39,22 +39,19 @@ function getHints(ranWord){
         wordGen()
     }
     else {
-        // parse data into hints
+        // parse data into hints and choose one from each array of synonyms and antonyms
         let hintDef = "Short Definition: " + data[0].shortdef
         let hintSyns = data[0].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
         let hintAnts =data[0].meta.ants[Math.floor(Math.random()*this.length)]
         console.log(hintAnts)
-        let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintSyns.length)]
+        let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
         let speechPart = "Part-of-speech: " + data[0].fl
         console.log(speechPart)  
         console.log(synOne)
         console.log(antOne)
         console.log(hintDef)
-
-
-     
     }
     })}
 
