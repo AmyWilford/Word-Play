@@ -3,6 +3,7 @@ let wordBankEl = document.getElementById('word-bank');
 let homeButtonEl = document.getElementById('home-button')
 let modalEl = document.getElementById('wordModal');
 let modalTitle = document.getElementById('modal-title');
+let wordDeleteBtn = document.getElementById('delete-word')
 
 let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', 'Drucilla'];
 let wordButton;
@@ -41,5 +42,17 @@ homeButtonEl.addEventListener('click', goHome);
 // event listener on each word to get correct info possibly from API fetch - get same word details as at end of each round
 
 // function delete words 
+function deleteWord(){
+    // wordArray.filter(wordArray => wordArray !== modalTitle.textContent)
+    var index = wordArray.indexOf(modalTitle.textContent);
+    if (index !== -1) {
+        wordArray.splice(index, 1);
+        }
+    console.log("delete clicked")
+    console.log(modalTitle.textContent)
+    console.log(wordArray)
+    // resave and load array to from local storage to update the list
+}
 
+wordDeleteBtn.addEventListener('click', deleteWord)
 // load stats bar (possibly tailwind)
