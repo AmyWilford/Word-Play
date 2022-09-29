@@ -1,7 +1,11 @@
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
+
+
 // set up home screen
 // function to choose random number between 5 & 9
+
+let storedWords =[];
 var randomNumber = Math.floor(Math.random() * 5)+5;
 console.log(randomNumber)
 // set up API fetch for random word generator - https://random-word-api.herokuapp.com/word?length=
@@ -32,11 +36,12 @@ fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
 // function to change location to wordbank.html
 
 
-<<<<<<< HEAD
-=======
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
 // wbBtn.addEventListener('click', openWB)
 
->>>>>>> 41075a4dad48d2dee285d89ca3db02cdf9dd8b8f
 
+// Local Storage
+function storeWords() {
+    
+}
