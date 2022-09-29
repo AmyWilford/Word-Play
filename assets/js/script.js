@@ -40,17 +40,22 @@ function getHints(ranWord){
     }
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
-        let hintDef = "Short Definition: " + data[0].shortdef
-        let hintSyns = data[0].meta.syns[Math.floor(Math.random()*this.length)]
+        // makes sureall parts of word are taken from same usage
+        let wordCat = Math.floor(Math.random() * data.length)
+        let hintDef = "Short Definition: " + data[wordCat].shortdef
+        let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        let hintAnts =data[0].meta.ants[Math.floor(Math.random()*this.length)]
-        console.log(hintAnts)
-        let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
-        let speechPart = "Part-of-speech: " + data[0].fl
+        // runs only if word has antonyms
+        if (data[wordCat].meta.ants.length>0){
+             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
+             console.log(hintAnts)
+             let antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             console.log(antOne)
+            }
+        let speechPart = "Part-of-speech: " + data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
-        console.log(antOne)
         console.log(hintDef)
     }
     })}
