@@ -53,6 +53,8 @@ function getHints(ranWord){
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
         // makes sureall parts of word are taken from same usage
+        let hintAnts;
+        let speechPart;
         let wordCat = Math.floor(Math.random() * data.length)
         let hintDef = "Short Definition: " + data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
@@ -61,10 +63,10 @@ function getHints(ranWord){
 
         ranWordObj = {
             word: ranWord,
-            synonym: hintSyns,
-            // antonym: antOne,
-            definition: hintDef,
-            // partofSpeech: speechPart
+            synonym: 'Synonym: '+ hintSyns,
+            antonym: 'Antonym: ' + hintAnts,
+            definition: 'Definition: '+ hintDef,
+            speechPart: 'Part of Speech: '+ speechPart
         };
 
         wordBank.push(ranWordObj);
@@ -74,13 +76,13 @@ function getHints(ranWord){
 
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
-             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
+            hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
             antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
              hints.push(antOne)
             }
-        let speechPart = "Part-of-speech: " + data[wordCat].fl
+        speechPart = "Part-of-speech: " + data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
         console.log(hintDef)
