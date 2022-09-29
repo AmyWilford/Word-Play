@@ -4,7 +4,7 @@ let ranWord;
 
 
 let startBtn = document.getElementById('start-btn')
-let wbBtn = document.getElementById('wb=btn')
+let wbBtn = document.getElementById('wb-btn')
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 
@@ -147,8 +147,11 @@ function loadStorage() {
     return loadedStorage;
 }
 
+function openWordbank(){
+    document.location.href ='wordbank.html'
+}
 
 // with event listeners for start game and word bank
 startBtn.addEventListener('click', startGame);
-// wbBtn.addEventListener('click', openWB)    
+wbBtn.addEventListener('click', openWordbank)    
 
