@@ -15,12 +15,12 @@ main {
     height: 400px;
 }
 
-/* #play-game {
-    display: none;
-} */
-.home-page {
+#play-game {
     display: none;
 }
+/* .home-page {
+    display: none;
+} */
 
 
 /* wordbank styles */
