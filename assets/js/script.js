@@ -1,5 +1,6 @@
 let wordBank =loadStorage();
 let ranWordObj;
+let ranWord;
 
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb=btn')
@@ -19,7 +20,7 @@ function wordGen(){
     .then(function (data) {
     console.log(data)
     // console.log(data[0])
-    let ranWord = data.word
+    ranWord = data.word
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
@@ -95,6 +96,33 @@ wordGen()
 // function to create appropriate number of blank spaces based on word picked
 // function to pull clue elements from the word & store clue elements
 // function to handle guess input and reveal letters as guessed
+var letterInput = document.querySelector('#letter-input');
+var textShow = document.querySelector('#showletter');
+var submit = document.querySelector('#submitform')
+  
+  submit.addEventListener('submit', function(event) {
+    event.preventDefault();
+    var commonLettersArr = [];
+    var wordInput = letterInput.value;
+    var wordInputArr = wordInput.split("");
+    
+    lettersInRanWord = ranWord.split("");
+  
+    if (wordInput === ranWord) {
+       textShow.innerHTML = ranWord
+  
+    } if (wordInput !== ranWord){
+      var commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
+      // var onlyCommonLetters = [...new Set(commonLetters)];
+      console.log(commonLetters);
+      
+     
+      commonLettersArr.push(commonLetters);
+      console.log(commonLettersArr)
+  
+    }
+  })
+  
 // function to reveal final answer on win or loss
 // function to clear hint and guess area and replace with definition etc.
 // function to get next clue after wrong guess or clue request
