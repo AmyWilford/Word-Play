@@ -64,8 +64,6 @@ function getHints(ranWord){
 
 
 wordGen()
-// check word bank to see if word alread exists, refetch if it does, else continue
-// set up API fetch for Dictionary with that word - 
 // function to create appropriate number of blank spaces based on word picked
 // function to pull clue elements from the word & store clue elements
 // function to handle guess input and reveal letters as guessed
@@ -79,7 +77,7 @@ wordGen()
 
 
 
-wordGen()
+
 // with event listeners for start game and word bank
 // startBtn.addEventListener('click', startGame);
 // wbBtn.addEventListener('click', openWB)
