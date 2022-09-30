@@ -130,19 +130,7 @@ function getHints(ranWord){
 
 wordGen()
 // function to create appropriate number of blank spaces based on word picked
-function randerBlanks() {
-    lettersInRanWord = ranWord.split("");
-    numerOfBlanks = lettersInRanWord.length;
-    console.log(lettersInRanWord)
-    
-    blanks = [];
-    for (i=0; i<numerOfBlanks; i++) {
-      blanks.push("_");
-      console.log(blanks);
-      document.querySelector('#text').textContent = blanks.join(" ");
-    }
-  }
-  randerBlanks();
+
 // function to pull clue elements from the word & store clue elements
 
 
