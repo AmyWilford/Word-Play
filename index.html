@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz@0,7..72;1,7..72&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,300&family=Rokkitt:wght@100;300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css"/>
     <title>Word Game</title>
 </head>
@@ -12,33 +18,53 @@
     <!-- Broswer Main Area -->
     <main>
       <!-- homepage section -->
-      <section class="home-page">
-        <div class="jumbotron text-center bg-white m-5" id="home-page">
-          <h1 clas="display-4">Word Game</h1>
-          <p class="lead mt-5">The game about words Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <section id="home-page" class="home-page vertical-center">
+        <div class="jumbotron text-center bg-white w-100 justify-content-center">
+          <h1 class="custom-title">wordplay</h1>
+          <p class="lead mt-5">The game that tests your knowledge behind the word</p>
           <p class="lead">
-            <button class="btn btn-warning btn-lg w-25 mt-3" role ="button" id="start-btn">play</button>
+            <button class="standard-button" role="button" id="start-btn">play</button>
           </p>
         </div>
-        <div class="button-footer row col-12">
-          <button class="btn btn-warning btn-lg m-5" role ="button" id="wb-btn">wordbank</button>
+        <div class="button-footer d-flex w-100 justify-content-end">
+          <button class="standard-button" role="button" id="wb-btn">wordbank</button>
         </div>
      </section>
 
      <!-- Game Play Section -->
      <section id="play-game">
-      <div id="hint-area" class="p-4">
-        <h3>hint:</h3>
+      <div id="hint-area" class="m-3">
+        <h3 id="hint-box">Let's begin!</h3>
       </div>
-      <div id="word-guess" class="d-flex flex-direction-column m-3 justify-content-center"> 
-        <form id="submitform">
-          <input id="letter-input" type="text" class="form-control w-25" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </form>
+      <div class="row justify-content-center">
+        <div id="letterblanks">_ _ _ _ _ _ _ _ _</div>
       </div>
-      <div class="word-blanks" id="text"></div> 
-      <div class="text-right" id="winOrLoss">
-          <button class="btn btn-warning btn-lg m-5" role ="button">request clue</button>
+      <!-- <div class="row w-100"> -->
+      <div id="word-guess" class="row d-flex w-100">
+        <div class="col-12 col-md-7 d-flex flex-column justify-content-end">
+          <div class="d-flex justify-content-center">              
+            <form id="submitform" class="mr-3">
+              <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </form>
+            <div id="text"></div> 
+            <div id="winOrLoss">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button id="next-clue" class="standard-button" role="button">request hint</button>
+            <button class="standard-button" role ="button">new word</button>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 d-flex align-items-end">
+          <!-- letter bank -->
+          <div id="letterbank" class="w-100 p-2">
+            <div></div>
+          </div>
+        </div>
       </div>
+      <!-- </div> -->
+      
+      
+      
     </section>
     </main>
 
