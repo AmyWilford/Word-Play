@@ -28,15 +28,15 @@
             <div id="statusbar" class="button-footer row w-50 m-2 pb-2">
               <h4 class="pb-2">your stats:</h4>
               <!-- Bulma stats bar -->
-                <progress id="statusbar-lose" class="progress is-danger" value="0" max="100"></progress>
-                <progress id="statusbar-win" class="progress is-link" value="0" max="100"></progress>
+                <progress id="statusbar-lose" class="progress is-danger" value="0" max="50"></progress>
+                <progress id="statusbar-win" class="progress is-link" value="0" max="50"></progress>
             </div>
         </section>
     </main>
 
     <!-- Modal -->
-    <div class="modal fade" id="wordModal" tabindex="-1" role="dialog" aria-labelledby="selected word details" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade word-wrap" id="wordModal" tabindex="-1" role="dialog" aria-labelledby="selected word details" aria-hidden="true">
+        <div class="modal-dialog flex-wrap" role="document">
           <div class="modal-content p-3">
             <div class="modal-header">
               <h5 class="modal-title" id="modal-title"><!-- Push Word Here--></h5>
@@ -45,9 +45,9 @@
               </button>
             </div>
             <!-- Push word content here -->
-            <div class="modal-body">
-              <p id="word-definition">Defintion:</p>
-              <p id="word-synonym">Synonym:</p>
+            <div class="modal-body text-break">
+              <p id="word-definition"></p>
+              <p id="word-synonym" class="text-break">Synonym:</p>
               <p id="word-antonym">Antonym:</p>
               <p id="word-phrase">Phrase:</p>
               <p id="dict-link"></p>

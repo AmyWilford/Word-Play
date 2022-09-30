@@ -28,6 +28,8 @@ function showWords(array){
         wordButton.setAttribute('id', array[i].word)
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
+
+
         // add event listener to each button
         // Pull API details into modal
         wordButton.addEventListener('click', function() {
@@ -57,7 +59,6 @@ let statusWinEl = document.getElementById('statusbar-win');
 let statusLoseEl = document.getElementById('statusbar-lose')
 statusLoseEl.setAttribute('value', playerLoses);
 statusWinEl.setAttribute('value', playerWins);
-
 
 // finds the index of the word in the array and deletes it
 function deleteWord(){

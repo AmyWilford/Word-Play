@@ -79,7 +79,7 @@ function getHints(ranWord){
         // parse data into hints and choose one from each array of synonyms and antonyms
 
         // makes sure all parts of word are taken from same usage
-        let hintAnts;
+        // let hintAnts;
 
         let wordCat = Math.floor(Math.random() * data.length)
         hintDef = "def. "+ data[wordCat].shortdef
@@ -89,24 +89,13 @@ function getHints(ranWord){
         synOne ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         synTwo ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         let hints = []
-        ranWordObj = {
-            word: ranWord,
-            synonym: hintSyns,
-            // antonym: antOne,
-            definition: hintDef,
-            // partofSpeech: speechPart
-        };
-
-        wordBank.push(ranWordObj);
-        console.log(wordBank);
-    
-        localStorage.setItem('word-bank', JSON.stringify(wordBank));
+        
 
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
              let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
-            antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
              hints.push(antOne)
             }
@@ -124,6 +113,19 @@ function getHints(ranWord){
         console.log(hints)
         // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
         setTimeout(gamePlay,2000)
+
+        ranWordObj = {
+            word: ranWord,
+            synonym: synOne, synTwo,
+            antonym: antOne,
+            definition: hintDef,
+            // partofSpeech: speechPart
+        };
+
+        wordBank.push(ranWordObj);
+        console.log(wordBank);
+    
+        localStorage.setItem('word-bank', JSON.stringify(wordBank));
     }
     })}
 
