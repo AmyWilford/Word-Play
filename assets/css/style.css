@@ -18,7 +18,11 @@ main {
     min-height: 90vh;
     position: relative;
 }
-
+#hint-area {
+    height: 400px;
+    font-style: italic;
+    font-family: literata;
+}
 .standard-button {
     letter-spacing: .1rem;
     background-color: #FF1616;
@@ -55,10 +59,17 @@ main {
 
 /* Gameplay Styles */
 
-/* #play-game {
-    display: none;
-} */
+.hint-box{
+    font-style: italic;
+}
 
+#play-game {
+    display: none;
+}
+
+.home-page {
+    display: block;
+}
 .hint-item {
     background-color: #E4E4E4;
     border-radius: 20px;
@@ -97,7 +108,26 @@ main {
     background-color: #E4E4E4;
 }
 
+#next-clue{
+    z-index: 1;
+}
+
 .button-footer {
     position: absolute;
     bottom: 0;
 }
+/* flashing cursor at end of hints */
+#hint-area::after {
+    content: "";
+    width: 2px;
+    height: 20px;
+    background: #000000;
+    display: inline-block;
+    animation: cursor-blink 1.5s steps(2) infinite;
+  }
+
+  @keyframes cursor-blink {
+    0% {
+      opacity: 0;
+    }
+  }
