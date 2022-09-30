@@ -22,6 +22,13 @@ let hintEl = document.getElementById('hint-area')
 // var randomNumber = Math.floor(Math.random() * 5)+5;
 // console.log(randomNumber)
 
+function startGame(){
+    wordGen()
+    console.log("game starting")
+    homeScreenEl.style.display='none'
+    gamePlayEL.style.display='block'
+}
+
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
     fetch('https://api.api-ninjas.com/v1/randomword')
@@ -123,19 +130,7 @@ function getHints(ranWord){
 
 wordGen()
 // function to create appropriate number of blank spaces based on word picked
-function randerBlanks() {
-    lettersInRanWord = ranWord.split("");
-    numerOfBlanks = lettersInRanWord.length;
-    console.log(lettersInRanWord)
-    
-    blanks = [];
-    for (i=0; i<numerOfBlanks; i++) {
-      blanks.push("_");
-      console.log(blanks);
-      document.querySelector('#text').textContent = blanks.join(" ");
-    }
-  }
-  randerBlanks();
+
 // function to pull clue elements from the word & store clue elements
 
 
@@ -229,7 +224,7 @@ nextClueBtn.addEventListener('click', nextHint)
 
 // Function to calculate score and save in storage
 let score = {
-    wins: 5,
+    wins: 0,
     loses: 0,
 };
 
