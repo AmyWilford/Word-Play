@@ -224,7 +224,7 @@ nextClueBtn.addEventListener('click', nextHint)
 
 // Function to calculate score and save in storage
 let score = {
-    wins: 5,
+    wins: 0,
     loses: 0,
 };
 
