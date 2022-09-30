@@ -116,6 +116,11 @@ main {
     position: absolute;
     bottom: 0;
 }
+
+.modal-body > p {
+    word-wrap: break-word;
+
+}
 /* flashing cursor at end of hints */
 #hint-area::after {
     content: "";

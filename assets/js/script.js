@@ -1,3 +1,4 @@
+// Esatblish Gloabl Variables
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
@@ -9,7 +10,9 @@ let hintDef;
 let antOne;
 let turns = 0
 let totalScore;
+let hints = [];
 
+// Access HTML components
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
 let homeScreenEl = document.getElementById('home-page')
@@ -17,13 +20,11 @@ let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
 let hintEl = document.getElementById('hint-area')
 
-// set up home screen
-// function to choose random number between 5 & 9
-// var randomNumber = Math.floor(Math.random() * 5)+5;
-// console.log(randomNumber)
 
+// Function to start game play
 function startGame(){
-    wordGen()
+    wordGen();
+    newHint();
     console.log("game starting")
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
@@ -32,9 +33,10 @@ function startGame(){
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
     fetch('https://api.api-ninjas.com/v1/randomword')
-// fetch(`https://random-word-api.herokuapp.com/word?length=${randomNumber}`)
     .then(function (response) {
-    return response.json();
+        if(response.ok) {
+            return response.json();
+        };
     })
     .then(function (data) {
     console.log(data)
@@ -48,7 +50,7 @@ function wordGen(){
     }  if (ranWord.length>9){
         wordGen()
     }
-   // check word bank to see if word alread exists, refetch if it does, else continue
+   // check word bank to see if word already exists, refetch if it does, else continue
     else if (wordBank.includes(ranWord)){
         wordGen()
     }
@@ -58,15 +60,15 @@ function wordGen(){
 })}
 
 // function to handle guess input and reveal letters as guessed
-// display blanks
-
 
 //API fetch for Dictionary with that word 
 // function to pull clue elements from the word & store clue elements
 function getHints(ranWord){
     fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`)
     .then(function (response) {
-    return response.json();
+        if(response.ok) {
+            return response.json();
+        };
     })
     .then(function (data) {
     console.log(data)
@@ -77,22 +79,44 @@ function getHints(ranWord){
     }
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
-
         // makes sure all parts of word are taken from same usage
-        let hintAnts;
 
         let wordCat = Math.floor(Math.random() * data.length)
         hintDef = "def. "+ data[wordCat].shortdef
+        // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
 
         synOne ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         synTwo ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        let hints = []
+        
+        // runs only if word has antonyms
+        if (data[wordCat].meta.ants.length>0){
+             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
+             console.log(hintAnts)
+             antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             console.log(antOne)
+            //  hints.push(antOne)
+            }
+
+        let speechPart = "Part-of-speech: " + data[wordCat].fl
+        hints.push(speechPart, hintDef, antOne, synOne);
+
+        console.log(speechPart)  
+        console.log(synOne)
+        console.log(synTwo)
+        console.log(hintDef)
+        // adds hints to an array to be used when revealing hints
+        // hints.push(synOne, synTwo)
+        console.log("word: "+ ranWord)
+        console.log(hints)
+        // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
+        setTimeout(gamePlay(hints),2000)
+
         ranWordObj = {
             word: ranWord,
-            synonym: hintSyns,
-            // antonym: antOne,
+            synonym: synOne, synTwo,
+            antonym: antOne,
             definition: hintDef,
             // partofSpeech: speechPart
         };
@@ -101,38 +125,13 @@ function getHints(ranWord){
         console.log(wordBank);
     
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
-
-        // runs only if word has antonyms
-        if (data[wordCat].meta.ants.length>0){
-             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
-             console.log(hintAnts)
-            antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
-             console.log(antOne)
-             hints.push(antOne)
-            }
-
-        let speechPart = "Part-of-speech: " + data[wordCat].fl
-
-
-        console.log(speechPart)  
-        console.log(synOne)
-        console.log(synTwo)
-        console.log(hintDef)
-        // adds hints to an array to be used when revealing hints
-        hints.push(synOne, synTwo)
-        console.log("word: "+ ranWord)
-        console.log(hints)
-        // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
-        setTimeout(gamePlay,2000)
     }
     })}
-
 
 wordGen()
 // function to create appropriate number of blank spaces based on word picked
 
 // function to pull clue elements from the word & store clue elements
-
 
 // function to handle guess input and reveal letters as guessed
     var letterInput = document.querySelector('#letter-input');
@@ -140,27 +139,29 @@ wordGen()
     var submit = document.querySelector('#submitform')
     var commonLettersArr = [];
 
-  
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
-    var wordInput = letterInput.value;
-    var wordInputArr = wordInput.split("");
+    let wordInput = letterInput.value;
+    let wordInputArr = wordInput.split("");
     
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput === ranWord) {
+    if (wordInput === ranWord && hintCount <4) {
         document.querySelector('#text').textContent = ranWord
         result.innerHTML = 'YOU WIN'
   
-    } if (wordInput !== ranWord){
+    } else if (wordInput !== ranWord && hintCount <4){
+        newHint();
           //set the common letters;
-        var commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
+        let commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
          // push to array and merge it and delete the duplicate letters in array;
         commonLettersArr.push(commonLetters);
-        var merged = [].concat.apply([],commonLettersArr);
-        var onlyCommonLetters = [...new Set(merged)];
+        let merged = [].concat.apply([],commonLettersArr);
+        let onlyCommonLetters = [...new Set(merged)];
         console.log(onlyCommonLetters)
         document.querySelector('#text').textContent = onlyCommonLetters;
+       } else if (hintCount >=4) {
+        console.log('You Lose');
        }
       })
   
@@ -173,26 +174,37 @@ wordGen()
 
 // function to get next clue after wrong guess or clue request
 // function to reveal first clue
-function gamePlay(hints){
-    console.log(speechPart)
-    document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
+let hintCount=0;
+let wordInput
+
+
+function newHint() {
+    document.getElementById('hint-box').textContent = hints[hintCount];
+    hintCount++
+}
+
+// newHint();
+// hint
+function gamePlay(){
+    console.log('gameplay')
+}
+    // document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
     
-    }
 
     // function for next hint button or after each wrong play
-function nextHint(){
-    if (turns<5){
-        console.log('next clue button clicked')
-        newHint = document.createElement('h4')
-        newHint.classlist.add('hint')
-        newHint.textContent = hints[0]
-        hintEl.appendChild(newHint)
-        hints.shift()
-        console.log(hints)
-        turns++
-    }
-    // else roundOver()
-}
+// function nextHint(){
+//     if (turns<5){
+//         console.log('next clue button clicked')
+//         newHint = document.createElement('h4')
+//         newHint.classlist.add('hint')
+//         newHint.textContent = hints[0]
+//         hintEl.appendChild(newHint)
+//         hints.shift()
+//         console.log(hints)
+//         turns++
+//     }
+//     // else roundOver()
+// }
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
@@ -217,7 +229,7 @@ function openWordbank(){
 
 startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)   
-nextClueBtn.addEventListener('click', nextHint) 
+// nextClueBtn.addEventListener('click', start) 
 
 
 
@@ -253,5 +265,5 @@ function saveScore(score){
 }
 
 calculateScore(retrievedScore);
-
+nextClueBtn.addEventListener('click', newHint);
 // This is another comment
