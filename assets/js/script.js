@@ -11,6 +11,8 @@ let antOne;
 let turns = 0
 let totalScore;
 let hints = [];
+let win;
+
 
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
@@ -19,12 +21,16 @@ let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
 let hintEl = document.getElementById('hint-area')
+let newWordEl = document.getElementById('newWord');
 
 
 // Function to start game play
 function startGame(){
-    wordGen();
+    nextClueBtn.style.display ='block';
+    hintEl.textContent = '';
+    hintCount=0;
     newHint();
+    wordGen();
     console.log("game starting")
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
@@ -111,7 +117,7 @@ function getHints(ranWord){
         console.log("word: "+ ranWord)
         console.log(hints)
         // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
-        setTimeout(gamePlay(hints),2000)
+        // setTimeout(newHint,2000)
 
         ranWordObj = {
             word: ranWord,
@@ -123,19 +129,15 @@ function getHints(ranWord){
 
         wordBank.push(ranWordObj);
         console.log(wordBank);
-    
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
     }
     })}
 
 wordGen()
-// function to create appropriate number of blank spaces based on word picked
 
 // function to pull clue elements from the word & store clue elements
-
 // function to handle guess input and reveal letters as guessed
     var letterInput = document.querySelector('#letter-input');
-    var result = document.querySelector('#winOrLoss');
     var submit = document.querySelector('#submitform')
     var commonLettersArr = [];
 
@@ -143,12 +145,14 @@ wordGen()
     event.preventDefault();
     let wordInput = letterInput.value;
     let wordInputArr = wordInput.split("");
+    hintCount++;
     
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput === ranWord && hintCount <4) {
+    if (wordInput === ranWord) {
         document.querySelector('#text').textContent = ranWord
-        result.innerHTML = 'YOU WIN'
+        win = true;
+        calculateScore(retrievedScore);
   
     } else if (wordInput !== ranWord && hintCount <4){
         newHint();
@@ -159,11 +163,14 @@ wordGen()
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
         console.log(onlyCommonLetters)
-        document.querySelector('#text').textContent = onlyCommonLetters;
+        document.querySelector('#letterbank').textContent = onlyCommonLetters;
        } else if (hintCount >=4) {
         console.log('You Lose');
        }
-      })
+       wordInput.textContent ='';
+      }
+      
+      )
   
 // function to reveal final answer on win or loss
 
@@ -179,8 +186,18 @@ let wordInput
 
 
 function newHint() {
-    document.getElementById('hint-box').textContent = hints[hintCount];
+    let hintHeader = document.createElement('h4');
+    hintHeader.textContent = hints[hintCount];
+    hintEl.append(hintHeader);
     hintCount++
+    if(hintCount>= 4) {
+        // wordInput.textContent ='';
+        console.log('You Lose')
+        nextClueBtn.style.display ='none';
+        document.querySelector('#text').textContent = ranWord
+        hintEl.textContent = '';
+    }
+    console.log(hintCount);
 }
 
 // newHint();
@@ -211,11 +228,6 @@ function loadStorage() {
     return loadedStorage;
 }
 
-function test(){
-    console.log('new hint button clicked')
-}
-// with event listeners for start game and word bank
-
 
 // wbBtn.addEventListener('click', openWB)    
 function openWordbank(){
@@ -229,7 +241,9 @@ function openWordbank(){
 
 startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)   
-// nextClueBtn.addEventListener('click', start) 
+newWordEl.addEventListener('click', startGame);
+nextClueBtn.addEventListener('click', newHint);
+
 
 
 
@@ -240,7 +254,6 @@ let score = {
     loses: 0,
 };
 
-let win = true;
 
 localStorage.setItem('player-score', JSON.stringify(score))
 
@@ -248,13 +261,15 @@ let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
 console.log('retrievedScore', retrievedScore);
 
 function calculateScore(scoreObj) {
-    console.log(retrievedScore);
     if(win) {
         let newWin = scoreObj.wins+1;
         scoreObj.wins = newWin;
+        console.log(scoreObj.wins);
     } else if(!win) {
         let newLose = scoreObj.loses+1;
         scoreObj.loses = newLose;
+        console.log(scoreObj.loses);
+
     };
     saveScore(scoreObj);
     console.log(scoreObj);
@@ -265,5 +280,4 @@ function saveScore(score){
 }
 
 calculateScore(retrievedScore);
-nextClueBtn.addEventListener('click', newHint);
-// This is another comment
+

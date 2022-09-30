@@ -16,10 +16,10 @@
 </head>
 <body>
     <!-- Broswer Main Area -->
-    <main>
+    <main class="container">
       <!-- homepage section -->
-      <section id="home-page" class="home-page vertical-center">
-        <div class="jumbotron text-center bg-white w-100 justify-content-center">
+      <section id="home-page" class="home-page row align-items-center">
+        <div class="jumbotron text-center bg-white align-middle">
           <h1 class="custom-title">wordplay</h1>
           <p class="lead mt-5">The game that tests your knowledge behind the word</p>
           <p class="lead">
@@ -34,37 +34,22 @@
      <!-- Game Play Section -->
      <section id="play-game">
       <div id="hint-area" class="m-3">
-        <h3 id="hint-box">Let's begin!</h3>
+        <!-- <h3 id="hint-box">Let's begin!</h3> -->
       </div>
-      <!-- <div class="row justify-content-center">
-        <div id="letterblanks">_ _ _ _ _ _ _ _ _</div>
-      </div> -->
       <!-- <div class="row w-100"> -->
-      <div id="word-guess" class="row d-flex w-100">
-        <div class="col-12 col-md-7 d-flex flex-column justify-content-end">
-          <div class="d-flex justify-content-center">              
+      <div id="word-guess" class=" w-100">
+        <!-- <div class="col-12 col-md-7 d-flex flex-column justify-content-end"> -->
+          <div class="d-flex flex-column justify-content-center">       
+            <div id="text"></div> 
             <form id="submitform" class="mr-3">
               <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </form>
-            <div id="text"></div> 
-            <div id="winOrLoss"></div>
+            <div id="letterbank" class="w-50 p-2"></div>
+            <div class="d-flex justify-content-center">
+              <button id="next-clue" class="standard-button" role="button">request hint</button>
+              <button id="newWord"class="standard-button" role ="button">new word</button>
+            </div>
           </div>
-          <div class="d-flex justify-content-center">
-            <button id="next-clue" class="standard-button" role="button">request hint</button>
-            <button class="standard-button" role ="button">new word</button>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 d-flex align-items-end">
-          <!-- letter bank -->
-          <div id="letterbank" class="w-100 p-2">
-            <div></div>
-          </div>
-        </div>
-      </div>
-      <!-- </div> -->
-      
-      
-      
     </section>
     </main>
 
