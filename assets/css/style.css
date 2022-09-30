@@ -2,34 +2,99 @@
 * {
     padding: 0;
     margin: 0;
+    color: #031C3D;
+    font-family:'Open Sans', sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-family:'Rokkitt', serif;
 }
 
 main {
-    border: 4px solid black;
-    border-radius: 20px;
+    border: 15px solid #031C3D;
     margin: 50px;
-    height: 75vh;
+    min-height: 90vh;
     position: relative;
 }
-#hint-area {
-    height: 400px;
+
+.standard-button {
+    letter-spacing: .1rem;
+    background-color: #FF1616;
+    color: white;
+    margin: 20px;
+    padding: 0.4rem 2rem;
+    border-radius: 10px;
+    border: 4px solid #FF1616;
 }
+.standard:hover {
+    background-color: white;
+    color: #031C3D;
+    border: 4px solid #031C3D;
+}
+/* .standard-button:focus {
+    outline: 1;
+    outline-color: #031C3D;
+    outline-style:inset;
+} */
+
+/* HomePage Styles */
+.home-page {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+.custom-title {
+    font-family:'Rokkitt', serif;
+    font-size: 8em;
+    letter-spacing: .4rem;
+    font-weight: 600;
+}
+
+/* Gameplay Styles */
 
 /* #play-game {
     display: none;
 } */
 
-.home-page {
-    display: none;
+.hint-item {
+    background-color: #E4E4E4;
+    border-radius: 20px;
+    margin-top:5px;
+    padding: 40px;
+    width: 75%;
 }
 
+#letterblanks {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 4rem;
+    font-family: 'Rokkitt', serif;
+}
+#word-guess {
+    position: absolute;
+    bottom: 0;
+    margin: 20px 0px;
+}
 
-/* wordbank styles */
-.custom-button {
-    padding: 5px 20px;
+#submitform {
+    width: 65%;
+}
+#letterbank {
+    border: 2px solid #031C3D;
+    margin: 20px;
+    min-height: 8rem;
+}
+
+/* wordbank.html styles */
+.wordbutton {
+    padding: .5rem 3rem;
     border-radius: 20px;
     border: none;
-    margin: 5px 5px;
+    margin: .5rem;
+    background-color: #E4E4E4;
 }
 
 .button-footer {

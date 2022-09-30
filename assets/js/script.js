@@ -1,10 +1,10 @@
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
-
+let totalScore;
 
 let startBtn = document.getElementById('start-btn')
-let wbBtn = document.getElementById('wb=btn')
+let wbBtn = document.getElementById('wb-btn')
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 
@@ -140,15 +140,52 @@ var submit = document.querySelector('#submitform')
 // function to get next clue after wrong guess or clue request
 // function to loop back and pick new word
 // function to update stats
-// function to change location to wordbank.html
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
     return loadedStorage;
 }
 
+function openWordbank(){
+    document.location.href ='wordbank.html'
+}
 
 // with event listeners for start game and word bank
 startBtn.addEventListener('click', startGame);
-// wbBtn.addEventListener('click', openWB)    
+wbBtn.addEventListener('click', openWordbank)    
+
+
+
+
+// Function to calculate score and save in storage
+let score = {
+    wins: 5,
+    loses: 0,
+};
+
+let win = true;
+
+localStorage.setItem('player-score', JSON.stringify(score))
+
+let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
+console.log('retrievedScore', retrievedScore);
+
+function calculateScore(scoreObj) {
+    console.log(retrievedScore);
+    if(win) {
+        let newWin = scoreObj.wins+1;
+        scoreObj.wins = newWin;
+    } else if(!win) {
+        let newLose = scoreObj.loses+1;
+        scoreObj.loses = newLose;
+    };
+    saveScore(scoreObj);
+    console.log(scoreObj);
+}
+
+function saveScore(score){
+    localStorage.setItem('player-score', JSON.stringify(score))
+}
+
+calculateScore(retrievedScore);
 
