@@ -19,11 +19,9 @@ playerLoses = playerScore.loses;
 // Retrieve wordbank words from localstorage
 let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
 
-
 // Function to push buttons to page
 function showWords(array){
     let wordButton;
-
     for(let i=0; i<array.length; i++) {
         wordButton = document.createElement('button');
         wordButton.classList.add('wordbutton');
