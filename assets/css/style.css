@@ -62,10 +62,33 @@ main {
 .hint-item {
     background-color: #E4E4E4;
     border-radius: 20px;
+    margin-top:5px;
     padding: 40px;
-    width: 60%;
+    width: 75%;
 }
-/* wordbank styles */
+
+#letterblanks {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 4rem;
+    font-family: 'Rokkitt', serif;
+}
+#word-guess {
+    position: absolute;
+    bottom: 0;
+    margin: 20px 0px;
+}
+
+#submitform {
+    width: 65%;
+}
+#letterbank {
+    border: 2px solid #031C3D;
+    margin: 20px;
+    min-height: 8rem;
+}
+
+/* wordbank.html styles */
 .wordbutton {
     padding: .5rem 3rem;
     border-radius: 20px;
@@ -77,23 +100,4 @@ main {
 .button-footer {
     position: absolute;
     bottom: 0;
-}
-
-#word-guess {
-    position: absolute;
-    bottom: 0;
-}
-#letterbank {
-
-    background-color: #E4E4E4;
-    margin: 20px;
-    min-height: 8rem;
-}
-
-#word-guess {
-    margin: 20px 0px;
-}
-
-#submitform {
-    width: 65%;
 }
