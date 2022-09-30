@@ -62,15 +62,14 @@ function deleteWord(){
     if (index !== -1) {
         loadedStorage.splice(index, 1);
         }
-    
-    console.log("delete clicked")
+        console.log("delete clicked")
     console.log(modalTitle.textContent)
     console.log(loadedStorage.length)
     // resave and load array to from local storage to update the list
     localStorage.setItem('word-bank', JSON.stringify(loadedStorage))
     //  $(`${modalTitle.textContent}`).hide(1000)
-    //  $(`${modalTitle.textContent}`).click(function() {
-	// 	$(`${modalTitle.textContent}`).fadeToggle("slow", "linear");})
+     $('#delete-word').click(function() {
+		$(`#${modalTitle.textContent}`).fadeToggle("slow", "linear");})
     // document.getElementById("word-bank").window.location.reload(true);
 }
 

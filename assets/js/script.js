@@ -1,10 +1,14 @@
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
+let speechPart
+let synOne
+let synTwo
+let hintDef
 
 
 let startBtn = document.getElementById('start-btn')
-let wbBtn = document.getElementById('wb=btn')
+let wbBtn = document.getElementById('wb-btn')
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 
@@ -48,7 +52,12 @@ function wordGen(){
     }
 })}
 
-//API fetch for Dictionary with that word - 
+// function to handle guess input and reveal letters as guessed
+// display blanks
+
+
+//API fetch for Dictionary with that word 
+// function to pull clue elements from the word & store clue elements
 function getHints(ranWord){
     fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`)
     .then(function (response) {
@@ -67,10 +76,11 @@ function getHints(ranWord){
         let hintAnts;
         let speechPart;
         let wordCat = Math.floor(Math.random() * data.length)
-        let hintDef = "Short Definition: " + data[wordCat].shortdef
+        hintDef = data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-        let synOne =  "Synonym: " + hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne = hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo = hintSyns[Math.floor(Math.random() * hintSyns.length)]
         let hints = []
         ranWordObj = {
             word: ranWord,
@@ -96,18 +106,18 @@ function getHints(ranWord){
         speechPart = "Part-of-speech: " + data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
+        console.log(synTwo)
         console.log(hintDef)
         // adds hints to an array to be used when revealing hints
-        hints.push(speechPart, synOne, hintDef)
+        hints.push(ranWord, speechPart, synOne, synTwo, hintDef, ranWord.length)
         console.log(hints)
+        gamePlay(hints)
+        return hints;
     }
     })}
 
-
-// wordGen()
+// --------------
 // function to create appropriate number of blank spaces based on word picked
-// function to pull clue elements from the word & store clue elements
-// function to handle guess input and reveal letters as guessed
 var letterInput = document.querySelector('#letter-input');
 var textShow = document.querySelector('#showletter');
 var submit = document.querySelector('#submitform')
@@ -137,10 +147,18 @@ var submit = document.querySelector('#submitform')
   
 // function to reveal final answer on win or loss
 // function to clear hint and guess area and replace with definition etc.
-// function to get next clue after wrong guess or clue request
 // function to loop back and pick new word
 // function to update stats
 // function to change location to wordbank.html
+
+
+// function to get next clue after wrong guess or clue request
+// function to reveal hint after each guess
+function gamePlay(hints){
+    console.log(hints)
+    document.getElementById('hint-box').textContent = "def. " + hintDef
+}
+
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];

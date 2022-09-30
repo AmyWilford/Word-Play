@@ -13,6 +13,12 @@ main {
 }
 #hint-area {
     height: 400px;
+    font-style: italic;
+    font-family: literata;
+}
+
+.hint-box{
+    font-style: italic;
 }
 
 #play-game {
