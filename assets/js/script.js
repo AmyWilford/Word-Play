@@ -259,3 +259,4 @@ function saveScore(score){
 
 calculateScore(retrievedScore);
 
+// This is another comment
