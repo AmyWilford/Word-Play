@@ -6,12 +6,14 @@ let synOne
 let synTwo
 let hintDef
 let antOne
-let turns = 4
+let turns = 0
 
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
+let nextClueBtn = document.getElementById('next-clue')
+let hintEl = document.getElementById('hint-area')
 
 // set up home screen
 // function to choose random number between 5 & 9
@@ -110,9 +112,9 @@ function getHints(ranWord){
         console.log(synTwo)
         console.log(hintDef)
         // adds hints to an array to be used when revealing hints
-        hints.push(synOne, synTwo, hintDef)
+        hints.push(synOne, synTwo)
         console.log(hints)
-        gamePlay(hints)
+        setTimeout(gamePlay(hints),3000)
         return hints;
     }
     })}
@@ -160,7 +162,16 @@ function gamePlay(hints){
     
     }
 
+    // function for next hint button or after each wrong play
 function nextHint(){
+    newHint = document.createElement('h4')
+    newHint.classlist.add('hint')
+    newHint.textContent = hints[0]
+    hintEl.appendChild(newHint)
+    console.log('next clue button clicked')
+    hints.shift()
+    console.log(hints)
+    turns++
 }
 
 function loadStorage() {
@@ -171,5 +182,6 @@ function loadStorage() {
 
 // with event listeners for start game and word bank
 startBtn.addEventListener('click', startGame);
+nextClueBtn.addEventListener('click', nextHint)
 // wbBtn.addEventListener('click', openWB)    
 
