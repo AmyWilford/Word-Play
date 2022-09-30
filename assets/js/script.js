@@ -113,6 +113,7 @@ function getHints(ranWord){
         console.log(hintDef)
         // adds hints to an array to be used when revealing hints
         hints.push(synOne, synTwo)
+        console.log(ranWord)
         console.log(hints)
         // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
         setTimeout(gamePlay,2000)
@@ -164,14 +165,17 @@ function gamePlay(hints){
 
     // function for next hint button or after each wrong play
 function nextHint(){
-    console.log('next clue button clicked')
-    newHint = document.createElement('h4')
-    newHint.classlist.add('hint')
-    newHint.textContent = hints[0]
-    hintEl.appendChild(newHint)
-    hints.shift()
-    console.log(hints)
-    turns++
+    if (turns<5){
+        console.log('next clue button clicked')
+        newHint = document.createElement('h4')
+        newHint.classlist.add('hint')
+        newHint.textContent = hints[0]
+        hintEl.appendChild(newHint)
+        hints.shift()
+        console.log(hints)
+        turns++
+    }
+    else roundOver
 }
 
 function loadStorage() {
