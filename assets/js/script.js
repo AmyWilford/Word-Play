@@ -5,7 +5,8 @@ let speechPart
 let synOne
 let synTwo
 let hintDef
-
+let antOne
+let turns = 4
 
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
@@ -72,15 +73,15 @@ function getHints(ranWord){
     }
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
-        // makes sureall parts of word are taken from same usage
+        // makes sure all parts of word are taken from same usage
         let hintAnts;
         let speechPart;
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = data[wordCat].shortdef
+        hintDef = "def. "+ data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-        synOne = hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo = hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         let hints = []
         ranWordObj = {
             word: ranWord,
@@ -99,17 +100,17 @@ function getHints(ranWord){
         if (data[wordCat].meta.ants.length>0){
             hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
-            antOne =  "Antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+            antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
              hints.push(antOne)
             }
-        speechPart = "Part-of-speech: " + data[wordCat].fl
+        speechPart = data[wordCat].fl
         console.log(speechPart)  
         console.log(synOne)
         console.log(synTwo)
         console.log(hintDef)
         // adds hints to an array to be used when revealing hints
-        hints.push(ranWord, speechPart, synOne, synTwo, hintDef, ranWord.length)
+        hints.push(synOne, synTwo, hintDef)
         console.log(hints)
         gamePlay(hints)
         return hints;
@@ -155,10 +156,12 @@ var submit = document.querySelector('#submitform')
 // function to get next clue after wrong guess or clue request
 // function to reveal hint after each guess
 function gamePlay(hints){
-    console.log(hints)
-    document.getElementById('hint-box').textContent = "def. " + hintDef
-}
+    document.getElementById('hint-box').textContent =  hintDef
+    
+    }
 
+function nextHint(){
+}
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
