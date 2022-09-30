@@ -38,11 +38,15 @@ main {
     margin: 5px 5px;
 }
 
+#next-clue{
+    z-index: 1;
+}
+
 .button-footer {
     position: absolute;
     bottom: 0;
 }
-
+/* flashing cursor at end of hints */
 #hint-area::after {
     content: "";
     width: 2px;

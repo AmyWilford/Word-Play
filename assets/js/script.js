@@ -1,11 +1,11 @@
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
-let speechPart
-let synOne
-let synTwo
-let hintDef
-let antOne
+let speechPart;
+let synOne;
+let synTwo;
+let hintDef;
+let antOne;
 let turns = 0
 
 let startBtn = document.getElementById('start-btn')
@@ -77,7 +77,6 @@ function getHints(ranWord){
         // parse data into hints and choose one from each array of synonyms and antonyms
         // makes sure all parts of word are taken from same usage
         let hintAnts;
-        let speechPart;
         let wordCat = Math.floor(Math.random() * data.length)
         hintDef = "def. "+ data[wordCat].shortdef
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
@@ -113,7 +112,7 @@ function getHints(ranWord){
         console.log(hintDef)
         // adds hints to an array to be used when revealing hints
         hints.push(synOne, synTwo)
-        console.log(ranWord)
+        console.log("word: "+ ranWord)
         console.log(hints)
         // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
         setTimeout(gamePlay,2000)
@@ -157,9 +156,10 @@ var submit = document.querySelector('#submitform')
 
 
 // function to get next clue after wrong guess or clue request
-// function to reveal hint after each guess
+// function to reveal first clue
 function gamePlay(hints){
-    document.getElementById('hint-box').textContent =  hintDef
+    console.log(speechPart)
+    document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
     
     }
 
@@ -175,7 +175,7 @@ function nextHint(){
         console.log(hints)
         turns++
     }
-    else roundOver
+    // else roundOver()
 }
 
 function loadStorage() {
@@ -183,9 +183,12 @@ function loadStorage() {
     return loadedStorage;
 }
 
-
+function test(){
+    console.log('new hint button clicked')
+}
 // with event listeners for start game and word bank
 startBtn.addEventListener('click', startGame);
-nextClueBtn.addEventListener('click', console.log('clicked'))
+nextClueBtn.addEventListener('click', test)
+
 // wbBtn.addEventListener('click', openWB)    
 
