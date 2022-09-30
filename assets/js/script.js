@@ -22,6 +22,13 @@ let hintEl = document.getElementById('hint-area')
 // var randomNumber = Math.floor(Math.random() * 5)+5;
 // console.log(randomNumber)
 
+function startGame(){
+    wordGen()
+    console.log("game starting")
+    homeScreenEl.style.display='none'
+    gamePlayEL.style.display='block'
+}
+
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
     fetch('https://api.api-ninjas.com/v1/randomword')
