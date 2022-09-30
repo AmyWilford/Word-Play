@@ -2,7 +2,6 @@
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
-
 let speechPart;
 let synOne;
 let synTwo;
@@ -12,6 +11,8 @@ let turns = 0
 let totalScore;
 let hints = [];
 let win;
+let hintCount=0;
+
 
 
 // Access HTML components
@@ -22,18 +23,26 @@ let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
 let hintEl = document.getElementById('hint-area')
 let newWordEl = document.getElementById('newWord');
+let letterInput = document.querySelector('#letter-input');
+let submit = document.querySelector('#submitform')
+let letterbankEl = document.querySelector('#letterbank')
 
 
-// Function to start game play
+
+// Function to start game play and reset styles
+
 function startGame(){
+    letterInput.style.display = 'block';
+    letterbankEl.style.display = 'block';
+    letterbankEl.textContent = '';
     nextClueBtn.style.display ='block';
-    hintEl.textContent = '';
+    document.querySelector('#text').textContent = '';
     hintCount=0;
-    newHint();
-    wordGen();
-    console.log("game starting")
+    hintEl.textContent = '';
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
+    newHint();
+    // wordGen();
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
@@ -65,7 +74,6 @@ function wordGen(){
     }
 })}
 
-// function to handle guess input and reveal letters as guessed
 
 //API fetch for Dictionary with that word 
 // function to pull clue elements from the word & store clue elements
@@ -88,25 +96,25 @@ function getHints(ranWord){
         // makes sure all parts of word are taken from same usage
 
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = "def. "+ data[wordCat].shortdef
+        hintDef = "defintion. "+ data[wordCat].shortdef
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
 
-        synOne ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="syn. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne ="synonym. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="synonym. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
              let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
-             antOne =  "ant. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             antOne =  "antonym. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
             //  hints.push(antOne)
             }
 
         let speechPart = "Part-of-speech: " + data[wordCat].fl
-        hints.push(speechPart, hintDef, antOne, synOne);
+        // Push all elements to hints array
 
         console.log(speechPart)  
         console.log(synOne)
@@ -115,7 +123,6 @@ function getHints(ranWord){
         // adds hints to an array to be used when revealing hints
         // hints.push(synOne, synTwo)
         console.log("word: "+ ranWord)
-        console.log(hints)
         // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
         // setTimeout(newHint,2000)
 
@@ -130,31 +137,27 @@ function getHints(ranWord){
         wordBank.push(ranWordObj);
         console.log(wordBank);
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
+        // let hintSynonyms = synOne + ', '+ synTwo;
+        let firstClue = speechPart + "  ( " + ranWord.length + " ) " + hintDef;
+        hints.push(firstClue, synOne, antOne, synTwo);
+        console.log(hints)
+
+
     }
     })}
 
 wordGen()
-
-// function to pull clue elements from the word & store clue elements
-// function to handle guess input and reveal letters as guessed
-    var letterInput = document.querySelector('#letter-input');
-    var submit = document.querySelector('#submitform')
-    var commonLettersArr = [];
+// Function to handle guess input - and reveal correct letters in letter bank
+let commonLettersArr = [];
 
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
-    let wordInput = letterInput.value;
-    let wordInputArr = wordInput.split("");
     hintCount++;
-    
+    let wordInput = letterInput.value;
+    let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput === ranWord) {
-        document.querySelector('#text').textContent = ranWord
-        win = true;
-        calculateScore(retrievedScore);
-  
-    } else if (wordInput !== ranWord && hintCount <4){
+    if (wordInput !== ranWord && hintCount <=4){
         newHint();
           //set the common letters;
         let commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
@@ -163,48 +166,46 @@ wordGen()
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
         console.log(onlyCommonLetters)
-        document.querySelector('#letterbank').textContent = onlyCommonLetters;
-       } else if (hintCount >=4) {
-        console.log('You Lose');
-       }
-       wordInput.textContent ='';
-      }
-      
-      )
-  
-// function to reveal final answer on win or loss
+        letterbankEl.textContent = onlyCommonLetters;
+       } 
+       else if (wordInput === ranWord) {
+        document.querySelector('#text').textContent = ranWord
+        win = true;
+        calculateScore(retrievedScore);
 
+        }
+       letterInput.value = '';
+      }
+    )
+  
 // function to clear hint and guess area and replace with definition etc.
 // function to loop back and pick new word
 // function to update stats
 
 
 // function to get next clue after wrong guess or clue request
-// function to reveal first clue
-let hintCount=0;
-let wordInput
-
+// function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
-    let hintHeader = document.createElement('h4');
+    hintHeader = document.createElement('h4');
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
     hintCount++
     if(hintCount>= 4) {
-        // wordInput.textContent ='';
         console.log('You Lose')
         nextClueBtn.style.display ='none';
+        letterInput.style.display = 'none';
+        letterbankEl.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
-        hintEl.textContent = '';
     }
     console.log(hintCount);
 }
 
-// newHint();
-// hint
-function gamePlay(){
-    console.log('gameplay')
-}
+
+// function gamePlay(){
+//     console.log('gameplay')
+// }
+
     // document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
     
 
@@ -228,16 +229,9 @@ function loadStorage() {
     return loadedStorage;
 }
 
-
-// wbBtn.addEventListener('click', openWB)    
 function openWordbank(){
     document.location.href ='wordbank.html'
 }
-
-// with event listeners for start game and word bank
-
-// startBtn.addEventListener('click', startGame);
-// wbBtn.addEventListener('click', openWB)    
 
 startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)   
@@ -245,15 +239,11 @@ newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
 
 
-
-
-
 // Function to calculate score and save in storage
 let score = {
     wins: 0,
     loses: 0,
 };
-
 
 localStorage.setItem('player-score', JSON.stringify(score))
 

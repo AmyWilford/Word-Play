@@ -50,12 +50,12 @@ main {
     align-items: center;
     display: none;
 }
-.custom-title {
+/* .custom-title {
     font-family:'Rokkitt', serif;
     font-size: 8em;
     letter-spacing: .4rem;
     font-weight: 600;
-}
+} */
 
 /* Gameplay Styles */
 
@@ -93,6 +93,12 @@ main {
     min-height: 8rem;
 }
 
+#text {
+    font-family:'Rokkitt', serif;
+    font-size: 4rem;
+    text-align: center;
+
+}
 /* wordbank.html styles */
 .wordbutton {
     padding: .5rem 3rem;
