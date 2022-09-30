@@ -43,3 +43,17 @@ main {
     bottom: 0;
 }
 
+#hint-area::after {
+    content: "";
+    width: 2px;
+    height: 20px;
+    background: #000000;
+    display: inline-block;
+    animation: cursor-blink 1.5s steps(2) infinite;
+  }
+
+  @keyframes cursor-blink {
+    0% {
+      opacity: 0;
+    }
+  }
