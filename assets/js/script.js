@@ -12,6 +12,7 @@ let totalScore;
 let hints = [];
 let win;
 let hintCount=0;
+let warning;
 
 
 
@@ -32,6 +33,8 @@ let letterbankEl = document.querySelector('#letterbank')
 // Function to start game play and reset styles
 
 function startGame(){
+    // warning.replaceWith(nextClueBtn);
+    hints =[];
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
     letterbankEl.textContent = '';
@@ -139,7 +142,7 @@ function getHints(ranWord){
         // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + "  ( " + ranWord.length + " ) " + hintDef;
         // Push all items into hints array
-        hints.push(firstClue, synOne, antOne, synTwo);
+        hints.push(firstClue, synOne, synTwo, antOne);
         // Console log all available hints
         console.log(hints)
     };
@@ -148,15 +151,13 @@ function getHints(ranWord){
 wordGen()
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
-
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
-    hintCount++;
     let wordInput = letterInput.value;
     let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput !== ranWord && hintCount <=4){
+    if (wordInput !== ranWord){
         newHint();
           //set the common letters;
         let commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
@@ -168,9 +169,13 @@ let commonLettersArr = [];
         letterbankEl.textContent = onlyCommonLetters;
        } 
        else if (wordInput === ranWord) {
-        document.querySelector('#text').textContent = ranWord
+        document.querySelector('#text').textContent = ranWord;
+        nextClueBtn.style.display ='none';
+        letterInput.style.display = 'none';
+        letterbankEl.style.display = 'none';
         win = true;
         calculateScore(retrievedScore);
+
         }
        letterInput.value = '';
       }
@@ -185,21 +190,30 @@ let commonLettersArr = [];
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
+    console.log(hintCount);
     let hintHeader = document.createElement('h4');
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
-    if(hintCount>3) {
+    if(hintCount === 3) {
+        warning = document.createElement('button');
+        warning.setAttribute('disabled', '')
+        warning.classList.add('warning-button');
+        warning.textContent = 'final guess'
+        nextClueBtn.replaceWith(warning);
+    } else if (hintCount === 4) {
         console.log('You Lose')
-        nextClueBtn.style.display ='none';
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
+        warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
     }
-    console.log(hintCount);
+    // warning.replaceWith(nextClueBtn);
     hintCount++
-
-}
+    console.log(hintCount);
+    return;
+    }
+   
 
 
 // function gamePlay(){
