@@ -42,7 +42,7 @@ function startGame(){
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     newHint();
-    // wordGen();
+    wordGen();
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
@@ -96,19 +96,19 @@ function getHints(ranWord){
         // makes sure all parts of word are taken from same usage
 
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = "defintion. "+ data[wordCat].shortdef
+        hintDef = "def. "+ data[wordCat].shortdef
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
 
-        synOne ="synonym. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="synonym. "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne ="first synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="second synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
              let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
              console.log(hintAnts)
-             antOne =  "antonym. " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
+             antOne =  "antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
              console.log(antOne)
             //  hints.push(antOne)
             }
@@ -128,10 +128,9 @@ function getHints(ranWord){
 
         ranWordObj = {
             word: ranWord,
-            synonym: synOne, synTwo,
+            synonym: synOne + ' , ' + synTwo,
             antonym: antOne,
             definition: hintDef,
-            // partofSpeech: speechPart
         };
 
         wordBank.push(ranWordObj);
@@ -139,12 +138,12 @@ function getHints(ranWord){
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
         // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + "  ( " + ranWord.length + " ) " + hintDef;
+        // Push all items into hints array
         hints.push(firstClue, synOne, antOne, synTwo);
+        // Console log all available hints
         console.log(hints)
-
-
-    }
-    })}
+    };
+})}
 
 wordGen()
 // Function to handle guess input - and reveal correct letters in letter bank
@@ -172,7 +171,6 @@ let commonLettersArr = [];
         document.querySelector('#text').textContent = ranWord
         win = true;
         calculateScore(retrievedScore);
-
         }
        letterInput.value = '';
       }
@@ -187,18 +185,20 @@ let commonLettersArr = [];
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
-    hintHeader = document.createElement('h4');
+    let hintHeader = document.createElement('h4');
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
-    hintCount++
-    if(hintCount>= 4) {
+    if(hintCount>3) {
         console.log('You Lose')
         nextClueBtn.style.display ='none';
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
+        hintHeader.textContent ='';
     }
     console.log(hintCount);
+    hintCount++
+
 }
 
 
