@@ -10,18 +10,21 @@ let modalAntEl = document.getElementById('word-antonym');
 let modalPhraseEl = document.getElementById('word-phrase');
 let modalDictLink = document.getElementById('dict-link');
 
-// let wordBank =loadStorage();
+// Retrieve player scores from localstorage
+let playerScore = JSON.parse(localStorage.getItem('player-score'));
+console.log(playerScore)
+playerWins = playerScore.wins;
+playerLoses = playerScore.loses;
 
+// Retrieve wordbank words from localstorage
 let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
-
-// let wordArray = ['Buffy', 'Willow', 'Tara', 'Zander', 'Giles', 'Anya', 'Spike', 'Angel', 'Drucilla'];
-let wordButton;
 
 // Function to push buttons to page
 function showWords(array){
+    let wordButton;
     for(let i=0; i<array.length; i++) {
         wordButton = document.createElement('button');
-        wordButton.classList.add('custom-button');
+        wordButton.classList.add('wordbutton');
         wordButton.setAttribute('id', array[i].word)
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
@@ -40,7 +43,7 @@ function showWords(array){
         })
     }
 }
-    
+
 
 // function to go back to home page
 function goHome() {
@@ -50,7 +53,10 @@ function goHome() {
 showWords(loadedStorage);
 homeButtonEl.addEventListener('click', goHome);
 
-
+let statusWinEl = document.getElementById('statusbar-win');
+let statusLoseEl = document.getElementById('statusbar-lose')
+statusLoseEl.setAttribute('value', playerLoses);
+statusWinEl.setAttribute('value', playerWins);
 
 
 // finds the index of the word in the array and deletes it
@@ -74,4 +80,6 @@ function deleteWord(){
 }
 
 wordDeleteBtn.addEventListener('click', deleteWord)
-// load stats bar (possibly tailwind)
+
+
+// load stats bar (possibly Bulma)
