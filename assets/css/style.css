@@ -60,18 +60,19 @@ main {
 } */
 
 .hint-item {
-    background-color: #EDE3E3;
+    background-color: #E4E4E4;
     border-radius: 20px;
     padding: 40px;
     width: 60%;
 }
 /* wordbank styles */
-.custom-button {
+.wordbutton {
     padding: .5rem 3rem;
     border-radius: 20px;
     border: none;
     margin: .5rem;
     font-size: 1.25rem;
+    background-color: #E4E4E4;
 }
 
 .button-footer {
@@ -93,3 +94,6 @@ main {
     margin: 20px 0px;
 }
 
+#submitform {
+    width: 65%;
+}

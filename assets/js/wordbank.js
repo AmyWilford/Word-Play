@@ -21,7 +21,7 @@ let wordButton;
 function showWords(array){
     for(let i=0; i<array.length; i++) {
         wordButton = document.createElement('button');
-        wordButton.classList.add('custom-button');
+        wordButton.classList.add('wordbutton');
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
         // add event listener to each button
