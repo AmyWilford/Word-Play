@@ -155,27 +155,23 @@ startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)    
 
 
-let currentWin = 0;
-let currentLose = 0;
 
-let win;
 
+// Function to calculate score and save in storage
 let score = {
-    wins: 0,
+    wins: 5,
     loses: 0,
 };
 
-// let win = false;
-// let lose =true;
+let win = true;
 
 localStorage.setItem('player-score', JSON.stringify(score))
 
-// console.log('score', score);
-
-const retrievedScore = JSON.parse(localStorage.getItem('player-score'));
+let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
 console.log('retrievedScore', retrievedScore);
 
 function calculateScore(scoreObj) {
+    console.log(retrievedScore);
     if(win) {
         let newWin = scoreObj.wins+1;
         scoreObj.wins = newWin;
@@ -184,6 +180,7 @@ function calculateScore(scoreObj) {
         scoreObj.loses = newLose;
     };
     saveScore(scoreObj);
+    console.log(scoreObj);
 }
 
 function saveScore(score){
@@ -192,6 +189,3 @@ function saveScore(score){
 
 calculateScore(retrievedScore);
 
-// function getScore() {
-//     return retrievedScore;
-// }

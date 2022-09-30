@@ -7,20 +7,20 @@
 }
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-family:'Rokkitt', serif;
 }
 
 main {
     border: 15px solid #031C3D;
     margin: 50px;
-    min-height: 75vh;
+    min-height: 90vh;
     position: relative;
 }
 
 .standard-button {
-    text-transform: uppercase;
-    letter-spacing: .15rem;
+    letter-spacing: .1rem;
     background-color: #FF1616;
     color: white;
     margin: 20px;
@@ -71,7 +71,6 @@ main {
     border-radius: 20px;
     border: none;
     margin: .5rem;
-    font-size: 1.25rem;
     background-color: #E4E4E4;
 }
 
@@ -85,7 +84,8 @@ main {
     bottom: 0;
 }
 #letterbank {
-    border: 2px dashed #031C3D;
+
+    background-color: #E4E4E4;
     margin: 20px;
     min-height: 8rem;
 }
