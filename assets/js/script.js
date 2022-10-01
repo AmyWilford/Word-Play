@@ -41,11 +41,11 @@ function startGame(){
     nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
-    hintEl.textContent = '';
+    // hintEl.textContent = '';
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
-    newHint();
     wordGen();
+    setTimeout(newHint,3000)
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
@@ -116,7 +116,7 @@ function getHints(ranWord){
             //  hints.push(antOne)
             }
 
-        let speechPart = "Part-of-speech: " + data[wordCat].fl
+        let speechPart = data[wordCat].fl
         // Push all elements to hints array
 
         console.log(speechPart)  
@@ -148,7 +148,6 @@ function getHints(ranWord){
     };
 })}
 
-wordGen()
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
@@ -190,6 +189,9 @@ let commonLettersArr = [];
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
+    
+    document.querySelector('h3').style.display ='none'
+
     console.log(hintCount);
     let hintHeader = document.createElement('h4');
     hintHeader.textContent = hints[hintCount];
