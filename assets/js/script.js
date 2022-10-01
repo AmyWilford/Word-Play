@@ -27,6 +27,7 @@ let newWordEl = document.getElementById('newWord');
 let letterInput = document.querySelector('#letter-input');
 let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
+let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 
 
 
@@ -36,6 +37,7 @@ function startGame(){
     if (warning) {
         warning.remove();      
     };
+    gameplayWordButton.style.display = 'none';
     hints =[];
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
@@ -149,6 +151,7 @@ function getHints(ranWord){
     };
 })}
 
+let wordInput;
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
@@ -208,13 +211,14 @@ function newHint() {
         nextClueBtn.style.display = 'none';
         document.getElementById('game-button-area').prepend(warning);     
        
-    } else if (hintCount === 4) {
+    } else if (hintCount === 4 ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
         warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
+        gameplayWordButton.style.display = 'block';
     }
     // warning.replaceWith(nextClueBtn);
     hintCount++
@@ -257,6 +261,7 @@ function openWordbank(){
 
 startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)   
+gameplayWordButton.addEventListener('click', openWordbank);
 newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
 
