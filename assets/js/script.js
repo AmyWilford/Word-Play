@@ -33,7 +33,9 @@ let letterbankEl = document.querySelector('#letterbank')
 // Function to start game play and reset styles
 
 function startGame(){
-    // warning.replaceWith(nextClueBtn);
+    if (warning) {
+        warning.remove();      
+    };
     hints =[];
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
@@ -41,7 +43,6 @@ function startGame(){
     nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
-    // hintEl.textContent = '';
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     wordGen();
@@ -189,7 +190,6 @@ let commonLettersArr = [];
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
-    
     document.querySelector('h3').style.display ='none'
 
     console.log(hintCount);
@@ -201,7 +201,9 @@ function newHint() {
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
         warning.textContent = 'final guess'
-        nextClueBtn.replaceWith(warning);
+        nextClueBtn.style.display = 'none';
+        document.getElementById('game-button-area').prepend(warning);     
+       
     } else if (hintCount === 4) {
         console.log('You Lose')
         letterInput.style.display = 'none';
