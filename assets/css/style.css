@@ -111,6 +111,10 @@ main {
 
 }
 
+#input-alert {
+    color: red;
+    font-style: italic;
+}
 /* wordbank.html styles */
 .wordbutton {
     padding: .5rem 3rem;

@@ -7,14 +7,14 @@ let synOne;
 let synTwo;
 let hintDef;
 let antOne;
-let turns = 0
-let totalScore;
+// let turns = 0
+// let totalScore;
 let hints = [];
 let win;
 let hintCount=0;
 let warning;
-
-
+let hintHeader;
+let score = loadScores();
 
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
@@ -29,14 +29,23 @@ let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 
-
-
 // Function to start game play and reset styles
 
 function startGame(){
+    if (!score) {
+         score = {
+            wins: 0,
+           loses: 0,
+        };
+    } else;
+    score;
+    
+    console.log(score);
     if (warning) {
         warning.remove();      
     };
+    document.querySelector('h3').style.display ='block'
+    document.getElementById('input-alert').textContent = '';
     gameplayWordButton.style.display = 'none';
     hints =[];
     letterInput.style.display = 'block';
@@ -162,8 +171,8 @@ let commonLettersArr = [];
   
     if (wordInput.length !== ranWord.length){
         document.getElementById('input-alert').textContent = 'Your guess is not the right length - guess again';
-        console.log('this word is not long enough');
-    } else if (wordInput.length === ranWord.length && wordInput !== ranWord){
+    } 
+    else if (wordInput.length === ranWord.length && wordInput !== ranWord){
         document.getElementById('input-alert').textContent = '';
         newHint();
           //set the common letters;
@@ -172,7 +181,6 @@ let commonLettersArr = [];
         commonLettersArr.push(commonLetters);
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
-        console.log(onlyCommonLetters)
         letterbankEl.textContent = onlyCommonLetters;
        } 
        else if (wordInput === ranWord) {
@@ -180,10 +188,10 @@ let commonLettersArr = [];
         nextClueBtn.style.display ='none';
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
+        gameplayWordButton.style.display = 'block';
         win = true;
-        calculateScore(retrievedScore);
-
-        }
+        calculateScore(score);
+        } 
        letterInput.value = '';
       }
     )
@@ -193,14 +201,11 @@ let commonLettersArr = [];
 // function to update stats
 
 
-// function to get next clue after wrong guess or clue request
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
 function newHint() {
     document.querySelector('h3').style.display ='none'
-
-    console.log(hintCount);
-    let hintHeader = document.createElement('h4');
+    hintHeader = document.createElement('h4');
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
     if(hintCount === 3) {
@@ -219,36 +224,11 @@ function newHint() {
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
         gameplayWordButton.style.display = 'block';
+        calculateScore(score);
     }
-    // warning.replaceWith(nextClueBtn);
     hintCount++
-    console.log(hintCount);
     return;
     }
-   
-
-
-// function gamePlay(){
-//     console.log('gameplay')
-// }
-
-    // document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
-    
-
-    // function for next hint button or after each wrong play
-// function nextHint(){
-//     if (turns<5){
-//         console.log('next clue button clicked')
-//         newHint = document.createElement('h4')
-//         newHint.classlist.add('hint')
-//         newHint.textContent = hints[0]
-//         hintEl.appendChild(newHint)
-//         hints.shift()
-//         console.log(hints)
-//         turns++
-//     }
-//     // else roundOver()
-// }
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
@@ -267,15 +247,15 @@ nextClueBtn.addEventListener('click', newHint);
 
 
 // Function to calculate score and save in storage
-let score = {
-    wins: 0,
-    loses: 0,
-};
+// score = {
+//     wins: 0,
+//     loses: 0,
+// };
 
-localStorage.setItem('player-score', JSON.stringify(score))
+// localStorage.setItem('player-score', JSON.stringify(score))
 
-let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
-console.log('retrievedScore', retrievedScore);
+// let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
+// console.log('retrievedScore', retrievedScore);
 
 function calculateScore(scoreObj) {
     if(win) {
@@ -286,15 +266,18 @@ function calculateScore(scoreObj) {
         let newLose = scoreObj.loses+1;
         scoreObj.loses = newLose;
         console.log(scoreObj.loses);
-
     };
     saveScore(scoreObj);
     console.log(scoreObj);
 }
 
+function loadScores() {
+    let loadedScores = JSON.parse(localStorage.getItem('player-score'));
+    return loadedScores;
+}
 function saveScore(score){
     localStorage.setItem('player-score', JSON.stringify(score))
 }
 
-calculateScore(retrievedScore);
+// calculateScore(retrievedScore);
 
