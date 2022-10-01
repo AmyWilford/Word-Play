@@ -14,9 +14,8 @@ h4 {
 
 main {
     border: 15px solid #031C3D;
-    margin: 50px;
     min-height: 90vh;
-    position: relative;
+    margin: 50px;
 }
 #hint-area {
     height: 400px;
@@ -56,7 +55,7 @@ main {
 
 /* HomePage Styles */
 .home-page {
-    min-height: 75vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     display: none;
@@ -108,7 +107,6 @@ main {
     font-family:'Rokkitt', serif;
     font-size: 4rem;
     text-align: center;
-
 }
 
 #input-alert {
@@ -135,10 +133,12 @@ main {
     z-index: 1;
 }
 
-/* .button-footer {
-    position: absolute;
-    bottom: 0;
-} */
+progress {
+    text-align: center;
+}
+progress:after {
+    content: attr(value)'%';
+  }
 
 .modal-body > p {
     word-wrap: break-word;

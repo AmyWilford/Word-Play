@@ -39,9 +39,7 @@ function startGame(){
         };
     } else;
     score;
-    
-    console.log(score);
-    if (warning) {
+        if (warning) {
         warning.remove();      
     };
     document.querySelector('h3').style.display ='block'
