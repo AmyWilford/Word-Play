@@ -34,8 +34,7 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
-    document.getElementById('holdhints').textContent= '';
-
+    document.getElementById('hint-box').textContent= '';
     if (!score) {
          score = {
             wins: 0,
@@ -175,7 +174,7 @@ let commonLettersArr = [];
     lettersInRanWord = ranWord.split("");
   
     if (wordInput.length !== ranWord.length){
-        document.getElementById('input-alert').textContent = 'Your guess is not the right length - guess again';
+        document.getElementById('input-alert').textContent = 'Your word is five letters long - guess again';
     } 
     else if (wordInput.length === ranWord.length && wordInput !== ranWord){
         document.getElementById('input-alert').textContent = '';
@@ -208,7 +207,7 @@ function newHint() {
     document.querySelector('h3').style.display ='none'
     let hintHeader = document.createElement('h5');
     hintHeader.textContent = hints[hintCount]
-    document.getElementById('holdhints').append(hintHeader)
+    document.getElementById('hint-box').append(hintHeader)
     if(hintCount === 3 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')

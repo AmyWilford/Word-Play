@@ -4,7 +4,7 @@
     color: #031C3D;
     font-family:'Open Sans', sans-serif;
 }
-h1,
+
 h2,
 h3,
 h4 {
@@ -23,7 +23,6 @@ main {
 }
 .standard-button,
 .warning-button {
-    letter-spacing: .1rem;
     color: white;
     margin: 20px;
     padding: 0.4rem 2rem;
@@ -59,12 +58,12 @@ main {
     align-items: center;
     display: none;
 }
-/* .custom-title {
+.custom-title {
     font-family:'Rokkitt', serif;
-    font-size: 8em;
-    letter-spacing: .4rem;
+    font-size: 7em;
+    letter-spacing: .3rem;
     font-weight: 600;
-} */
+}
 
 /* Gameplay Styles */
 
@@ -158,3 +157,10 @@ progress:after {
       opacity: 0;
     }
   }
+
+/* Media Queries */
+@media only screen and (max-width: 550px) {
+.custom-title {
+    font-size: 4rem;
+}
+}
