@@ -13,6 +13,8 @@ let hints = [];
 let win;
 let hintCount=0;
 let warning;
+// let hintHeader = document.createElement('h5');
+
 let hintHeader;
 let score = loadScores();
 
@@ -32,6 +34,9 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
+    if (hintHeader){
+        hintHeader.textContent ='';
+    }
     if (!score) {
          score = {
             wins: 0,
@@ -69,11 +74,12 @@ function wordGen(){
     .then(function (data) {
     console.log(data)
     // console.log(data[0])
-    ranWord = data.word
+    ranWord = data.word;
+    ranWord = ranWord.toLowerCase();
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
-    if (ranWord.length !==5){
+    if (ranWord.length !=5){
         wordGen()
     }
     // }  if (ranWord.length>9){
@@ -165,7 +171,7 @@ function getHints(ranWord){
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
-    let wordInput = letterInput.value;
+    let wordInput = letterInput.value.toLowerCase();
     let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
   
@@ -201,7 +207,8 @@ let commonLettersArr = [];
 // Function to generate hints (and adjust displayed items through game play)
 function newHint() {
     document.querySelector('h3').style.display ='none'
-    hintHeader = document.createElement('h5');
+    let hintHeader = document.createElement('h5');
+
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
     if(hintCount === 3) {
@@ -220,6 +227,7 @@ function newHint() {
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
         gameplayWordButton.style.display = 'block';
+        !win;
         calculateScore(score);
     }
     hintCount++
