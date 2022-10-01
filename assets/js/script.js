@@ -157,7 +157,11 @@ let commonLettersArr = [];
     let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput !== ranWord){
+    if (wordInput.length !== ranWord.length){
+        document.getElementById('input-alert').textContent = 'Your guess is not the right length - guess again';
+        console.log('this word is not long enough');
+    } else if (wordInput.length === ranWord.length && wordInput !== ranWord){
+        document.getElementById('input-alert').textContent = '';
         newHint();
           //set the common letters;
         let commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
