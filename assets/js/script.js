@@ -198,8 +198,6 @@ let commonLettersArr = [];
   
 // function to clear hint and guess area and replace with definition etc.
 // function to loop back and pick new word
-// function to update stats
-
 
 // function to reveal first clue on page load - and progressively after on text input or clue request click
 
@@ -228,7 +226,30 @@ function newHint() {
     }
     hintCount++
     return;
-    }
+}
+
+function calculateScore(scoreObj) {
+    if(win) {
+        let newWin = scoreObj.wins+1;
+        scoreObj.wins = newWin;
+        console.log(scoreObj.wins);
+    } else if(!win) {
+        let newLose = scoreObj.loses+1;
+        scoreObj.loses = newLose;
+        console.log(scoreObj.loses);
+    };
+    saveScore(scoreObj);
+    console.log(scoreObj);
+}
+
+function saveScore(score){
+    localStorage.setItem('player-score', JSON.stringify(score))
+}
+
+function loadScores() {
+    let loadedScores = JSON.parse(localStorage.getItem('player-score'));
+    return loadedScores;
+}
 
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
@@ -246,38 +267,4 @@ newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
 
 
-// Function to calculate score and save in storage
-// score = {
-//     wins: 0,
-//     loses: 0,
-// };
-
-// localStorage.setItem('player-score', JSON.stringify(score))
-
-// let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
-// console.log('retrievedScore', retrievedScore);
-
-function calculateScore(scoreObj) {
-    if(win) {
-        let newWin = scoreObj.wins+1;
-        scoreObj.wins = newWin;
-        console.log(scoreObj.wins);
-    } else if(!win) {
-        let newLose = scoreObj.loses+1;
-        scoreObj.loses = newLose;
-        console.log(scoreObj.loses);
-    };
-    saveScore(scoreObj);
-    console.log(scoreObj);
-}
-
-function loadScores() {
-    let loadedScores = JSON.parse(localStorage.getItem('player-score'));
-    return loadedScores;
-}
-function saveScore(score){
-    localStorage.setItem('player-score', JSON.stringify(score))
-}
-
-// calculateScore(retrievedScore);
 
