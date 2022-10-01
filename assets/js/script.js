@@ -34,9 +34,8 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
-    if (hintHeader){
-        hintHeader.textContent ='';
-    }
+    document.getElementById('holdhints').textContent= '';
+
     if (!score) {
          score = {
             wins: 0,
@@ -208,10 +207,9 @@ let commonLettersArr = [];
 function newHint() {
     document.querySelector('h3').style.display ='none'
     let hintHeader = document.createElement('h5');
-
-    hintHeader.textContent = hints[hintCount];
-    hintEl.append(hintHeader);
-    if(hintCount === 3) {
+    hintHeader.textContent = hints[hintCount]
+    document.getElementById('holdhints').append(hintHeader)
+    if(hintCount === 3 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
