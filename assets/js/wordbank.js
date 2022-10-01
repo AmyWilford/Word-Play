@@ -11,7 +11,7 @@ let modalPhraseEl = document.getElementById('word-phrase');
 let modalDictLink = document.getElementById('dict-link');
 
 // Retrieve player scores from localstorage
-let playerScore = JSON.parse(localStorage.getItem('player-score'));
+let playerScore = JSON.parse(localStorage.getItem('player-score')) ||'';
 console.log(playerScore)
 playerWins = playerScore.wins;
 playerLoses = playerScore.loses;
@@ -45,7 +45,6 @@ function showWords(array){
         })
     }
 }
-
 
 // function to go back to home page
 function goHome() {
