@@ -152,7 +152,7 @@ function getHints(ranWord){
         console.log(wordBank);
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
         // let hintSynonyms = synOne + ', '+ synTwo;
-        let firstClue = speechPart + "  ( " + ranWord.length + " ) " + hintDef;
+        let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
         hints.push(firstClue, synOne, synTwo, antOne);
         // Console log all available hints
@@ -160,7 +160,7 @@ function getHints(ranWord){
     };
 })}
 
-let wordInput;
+// let wordInput;
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
@@ -197,10 +197,8 @@ let commonLettersArr = [];
     )
   
 // function to clear hint and guess area and replace with definition etc.
-// function to loop back and pick new word
 
-// function to reveal first clue on page load - and progressively after on text input or clue request click
-
+// Function to generate hints (and adjust displayed items through game play)
 function newHint() {
     document.querySelector('h3').style.display ='none'
     hintHeader = document.createElement('h5');
@@ -228,6 +226,7 @@ function newHint() {
     return;
 }
 
+// Function to calculate score
 function calculateScore(scoreObj) {
     if(win) {
         let newWin = scoreObj.wins+1;
@@ -241,25 +240,28 @@ function calculateScore(scoreObj) {
     saveScore(scoreObj);
     console.log(scoreObj);
 }
-
+// function save current scores to local storage
 function saveScore(score){
     localStorage.setItem('player-score', JSON.stringify(score))
 }
 
+// Function to load storedscores on each game play so that scores can update each game
 function loadScores() {
     let loadedScores = JSON.parse(localStorage.getItem('player-score'));
     return loadedScores;
 }
 
+// function to load stored wordbank words on game replay
 function loadStorage() {
     let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
     return loadedStorage;
 }
-
+// function to open wordbank page
 function openWordbank(){
     document.location.href ='wordbank.html'
 }
 
+// Event Listeners - page buttons
 startBtn.addEventListener('click', startGame);
 wbBtn.addEventListener('click', openWordbank)   
 gameplayWordButton.addEventListener('click', openWordbank);
