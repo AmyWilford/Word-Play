@@ -91,7 +91,7 @@ function getHints(ranWord){
     console.log(data)
     console.log(data.length)
     // makes sure it is a word with usable values in the dictionary
-    if (data.length>10){
+    if (!data[0].meta){
         wordGen()
     }
     else {
