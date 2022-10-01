@@ -116,6 +116,13 @@ main {
     font-style: italic;
 }
 /* wordbank.html styles */
+.my-section {
+    height: 75vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .wordbutton {
     padding: .5rem 3rem;
     border-radius: 20px;
@@ -128,15 +135,15 @@ main {
     z-index: 1;
 }
 
-.button-footer {
+/* .button-footer {
     position: absolute;
     bottom: 0;
-}
+} */
 
 .modal-body > p {
     word-wrap: break-word;
-
 }
+
 /* flashing cursor at end of hints */
 #hint-area::after {
     content: "";

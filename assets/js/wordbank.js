@@ -7,7 +7,7 @@ let wordDeleteBtn = document.getElementById('delete-word')
 let modalDefEl = document.getElementById('word-definition');
 let modalSynEl = document.getElementById('word-synonym');
 let modalAntEl = document.getElementById('word-antonym');
-let modalPhraseEl = document.getElementById('word-phrase');
+let modalPartSpeech = document.getElementById('part-speech');
 let modalDictLink = document.getElementById('dict-link');
 
 // Retrieve player scores from localstorage
@@ -62,11 +62,12 @@ function showWords(array){
         // Pull API details into modal
         wordButton.addEventListener('click', function() {
             console.log(array[i] + ' clicked');
-            modalTitle.textContent = array[i].word;
+            modalTitle.textContent = array[i].word 
+            modalPartSpeech.textContent = array[i].speechPart;
             modalDefEl.textContent = array[i].definition;
             modalSynEl.textContent = array[i].synonym;
             modalAntEl.textContent = array[i].antonym;
-            modalPhraseEl.textContent = array[i].phrase;
+            // modalPhraseEl.textContent = 
             $(document).ready(function(){
                 $("#wordModal").modal("show");
             });

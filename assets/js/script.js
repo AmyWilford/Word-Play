@@ -75,11 +75,12 @@ function wordGen(){
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
-    if (ranWord.length<5){
-        wordGen()
-    }  if (ranWord.length>9){
+    if (ranWord.length !==5){
         wordGen()
     }
+    // }  if (ranWord.length>9){
+    //     wordGen()
+    // }
    // check word bank to see if word already exists, refetch if it does, else continue
     else if (wordBank.includes(ranWord)){
         wordGen()
@@ -143,6 +144,7 @@ function getHints(ranWord){
 
         ranWordObj = {
             word: ranWord,
+            speechPart: speechPart,
             synonym: synOne + ' , ' + synTwo,
             antonym: antOne,
             definition: hintDef,
@@ -203,7 +205,7 @@ let commonLettersArr = [];
 
 function newHint() {
     document.querySelector('h3').style.display ='none'
-    hintHeader = document.createElement('h4');
+    hintHeader = document.createElement('h5');
     hintHeader.textContent = hints[hintCount];
     hintEl.append(hintHeader);
     if(hintCount === 3) {
