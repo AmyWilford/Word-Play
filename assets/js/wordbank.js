@@ -15,6 +15,34 @@ let playerScore = JSON.parse(localStorage.getItem('player-score')) ||'';
 console.log(playerScore)
 playerWins = playerScore.wins;
 playerLoses = playerScore.loses;
+console.log(playerWins)
+console.log(playerLoses)
+// let winPercent;
+// let losePercent
+
+// Function to calculate stats percentages
+function statPercents(wins, loses) {
+    let totalPlays = wins+loses
+    let winPercent;
+    let losePercent;
+    if(loses == 0) {
+        winPercent === 100
+        losePercent === 0
+    } else if (loses !==0) {
+        winPercent = Math.floor((wins/totalPlays)*100);
+        console.log(winPercent);
+        losePercent = 100 - winPercent;
+
+     
+    }
+    console.log(winPercent, losePercent)
+
+    let statusWinEl = document.getElementById('statusbar-win');
+    let statusLoseEl = document.getElementById('statusbar-lose')
+    statusLoseEl.setAttribute('value', losePercent);
+    statusWinEl.setAttribute('value', winPercent);
+}
+statPercents(playerWins, playerLoses)
 
 // Retrieve wordbank words from localstorage
 let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
@@ -54,10 +82,7 @@ function goHome() {
 showWords(loadedStorage);
 homeButtonEl.addEventListener('click', goHome);
 
-let statusWinEl = document.getElementById('statusbar-win');
-let statusLoseEl = document.getElementById('statusbar-lose')
-statusLoseEl.setAttribute('value', playerLoses);
-statusWinEl.setAttribute('value', playerWins);
+
 
 // finds the index of the word in the array and deletes it
 function deleteWord(){
