@@ -157,7 +157,7 @@ function getHints(ranWord){
         ranWordObj = {
             word: ranWord,
             speechPart: speechPart,
-            synonym: synOne + ' , ' + synTwo,
+            synonym: hintSyns,
             antonym: antOne,
             definition: hintDef,
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`       

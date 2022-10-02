@@ -67,6 +67,7 @@ function showWords(array){
             modalDefEl.textContent = array[i].definition;
             modalSynEl.textContent = array[i].synonym;
             modalAntEl.textContent = array[i].antonym;
+            modalDictLink.href=array[i].DictionaryLink;
             // modalPhraseEl.textContent = 
             $(document).ready(function(){
                 $("#wordModal").modal("show");
