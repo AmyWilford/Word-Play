@@ -12,10 +12,16 @@ h4 {
 }
 
 main {
-    border-top: 10px solid #031C3D;
-    min-height: 90vh;
+    border: 10px solid #031C3D;
+    /* min-height: 90vh; */
     margin: 50px;
+    align-self: baseline;
 }
+
+.subtitle{
+    text-align: left;
+}
+
 #hint-area {
     height: 400px;
     font-style: italic;
@@ -87,18 +93,26 @@ main {
 }
 
 #word-guess {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
+    /* bottom: ; */
     margin: 20px 0px;
+    align-items: center;
 }
 
 #submitform {
-    width: 65%;
+    width: 40%;
+    border: none;
+    
 }
 #letterbank {
     background-color: #E4E4E4;
     margin: 20px;
     min-height: 8rem;
+    font-size: 200%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+   
 }
 
 #text {
@@ -126,6 +140,8 @@ main {
     margin: .5rem;
     background-color: #E4E4E4;
 }
+
+
 
 #next-clue{
     z-index: 1;

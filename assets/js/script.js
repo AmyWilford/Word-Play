@@ -52,7 +52,7 @@ function startGame(){
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
     letterbankEl.textContent = '';
-    nextClueBtn.style.display ='block';
+    // nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
     homeScreenEl.style.display='none'
