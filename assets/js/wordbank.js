@@ -57,9 +57,7 @@ function showWords(array){
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
 
-        console.log(array[i].synonym);
-        let synString = (array[i].synonym).join(" , ");
-        console.log(synString);
+
 
         // add event listener to each button
         // Pull API details into modal
