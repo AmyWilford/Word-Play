@@ -57,15 +57,14 @@ main {
 .home-page {
     min-height: 75vh;
     display: flex;
-    align-items: center;
     display: none;
 }
-/* .custom-title {
+.custom-title {
     font-family:'Rokkitt', serif;
-    font-size: 8em;
+    font-size: 6em;
     letter-spacing: .4rem;
     font-weight: 600;
-} */
+}
 
 /* Gameplay Styles */
 
@@ -107,7 +106,17 @@ main {
     font-family:'Rokkitt', serif;
     font-size: 4rem;
     text-align: center;
-
+}
+#input-alert {
+    color: red;
+    font-style: italic;
+}
+/* wordbank.html styles */
+.my-section {
+    height: 75vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* wordbank.html styles */
@@ -123,14 +132,8 @@ main {
     z-index: 1;
 }
 
-.button-footer {
-    position: absolute;
-    bottom: 0;
-}
-
 .modal-body > p {
     word-wrap: break-word;
-
 }
 /* flashing cursor at end of hints */
 #hint-area::after {
@@ -147,3 +150,12 @@ main {
       opacity: 0;
     }
   }
+
+  @media only screen and (max-width: 550px) {
+    *{
+        font-size: 14px;
+    }
+    .custom-title {
+        font-size: 4rem;
+    }
+    }
