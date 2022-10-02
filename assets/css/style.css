@@ -1,20 +1,21 @@
 /* Universal styles */
 * {
     padding: 0;
+    margin: 0;
     color: #031C3D;
     font-family:'Open Sans', sans-serif;
 }
-
+h1,
 h2,
 h3,
 h4 {
     font-family:'Rokkitt', serif;
 }
-
 main {
-    border: 10px solid #031C3D;
-    /* min-height: 90vh; */
+    border: 15px solid #031C3D;
     margin: 50px;
+    min-height: 90vh;
+    position: relative;
 }
 
 .subtitle{
@@ -32,14 +33,15 @@ h5{
 }
 
 #hint-area {
-    height: 300px;
+    height: 400px;
     font-style: italic;
-    margin: 3% 2%;
+    font-family: literata;
 }
 .standard-button,
 .warning-button {
+    letter-spacing: .1rem;
     color: white;
-    margin: 20px;
+    margin: 20px 0px;
     padding: 0.4rem 2rem;
     border-radius: 10px;
 }
@@ -68,15 +70,14 @@ h5{
 
 /* HomePage Styles */
 .home-page {
-    min-height: 90vh;
+    min-height: 75vh;
     display: flex;
-    align-items: center;
     display: none;
 }
 .custom-title {
     font-family:'Rokkitt', serif;
-    font-size: 7em;
-    letter-spacing: .3rem;
+    font-size: 6em;
+    letter-spacing: .4rem;
     font-weight: 600;
 }
 
@@ -102,37 +103,25 @@ h5{
 }
 
 #word-guess {
-    /* position: absolute; */
-    /* bottom: ; */
+    position: absolute;
+    bottom: 0;
     margin: 20px 0px;
-    align-items: center;
 }
 
 #submitform {
-    width: 40%;
-    border: none;
-    }
-
-
-
+    width: 65%;
+}
 #letterbank {
     background-color: #E4E4E4;
     margin: 20px;
     min-height: 8rem;
-    font-size: 200%;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 10px;
-    position: relative;
 }
-
 
 #text {
     font-family:'Rokkitt', serif;
     font-size: 4rem;
     text-align: center;
 }
-
 #input-alert {
     color: red;
     font-style: italic;
@@ -145,6 +134,7 @@ h5{
     justify-content: space-between;
 }
 
+/* wordbank.html styles */
 .wordbutton {
     padding: .5rem 3rem;
     border-radius: 20px;
@@ -153,24 +143,13 @@ h5{
     background-color: #E4E4E4;
 }
 
-
-
-#next-clue, #newWord{
+#next-clue{
     z-index: 1;
-    display: none;
 }
-
-progress {
-    text-align: center;
-}
-progress:after {
-    content: attr(value)'%';
-  }
 
 .modal-body > p {
     word-wrap: break-word;
 }
-
 /* flashing cursor at end of hints */
 #hint-area::after {
     content: "";
@@ -187,9 +166,11 @@ progress:after {
     }
   }
 
-/* Media Queries */
-@media only screen and (max-width: 550px) {
-.custom-title {
-    font-size: 4rem;
-}
-}
+  @media only screen and (max-width: 550px) {
+    *{
+        font-size: 14px;
+    }
+    .custom-title {
+        font-size: 4rem;
+    }
+    }
