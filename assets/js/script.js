@@ -122,13 +122,13 @@ function getHints(ranWord){
         // makes sure all parts of word are taken from same usage
 
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = "def. "+ data[wordCat].shortdef
+        hintDef = "def."+ data[wordCat].shortdef
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-        firstLetter = "first letter: " + ranWord.charAt(0)
-        synOne ="syn. 1: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="syn. 2: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        firstLetter = "it begins with " + ranWord.charAt(0)
+        synOne ="syn. 1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn. 2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
@@ -159,7 +159,8 @@ function getHints(ranWord){
             synonym: synOne + ' , ' + synTwo,
             antonym: antOne,
             definition: hintDef,
-        };
+            DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`       
+         };
 
         wordBank.push(ranWordObj);
         console.log(wordBank);
@@ -217,7 +218,7 @@ function newHint() {
     let hintHeader = document.createElement('h5');
     hintHeader.textContent = hints[hintCount]
     document.getElementById('hint-box').append(hintHeader)
-    if(hintCount === 3 && !win) {
+    if(hintCount === 4 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
@@ -225,7 +226,7 @@ function newHint() {
         nextClueBtn.style.display = 'none';
         document.getElementById('game-button-area').prepend(warning);     
        
-    } else if (hintCount === 4 ) {
+    } else if (hintCount === 5 ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';

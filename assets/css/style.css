@@ -24,10 +24,16 @@ main {
     
 }
 
+h5{
+    font-family: 'Literata', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
 #hint-area {
     height: 300px;
     font-style: italic;
-    font-family: literata;
     margin: 3% 2%;
 }
 .standard-button,
