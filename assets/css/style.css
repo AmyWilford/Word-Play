@@ -26,7 +26,7 @@ main {
 .warning-button {
     letter-spacing: .1rem;
     color: white;
-    margin: 20px;
+    margin: 20px 0px;
     padding: 0.4rem 2rem;
     border-radius: 10px;
 }
