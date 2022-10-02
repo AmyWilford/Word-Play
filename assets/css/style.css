@@ -113,17 +113,17 @@ h5{
     border: none;
     
 }
-#letterbank {
+#bank-area{
     background-color: #E4E4E4;
     margin: 20px;
     min-height: 8rem;
-    font-size: 200%;
+    font-size: 100%;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 10px;
     position: relative;
+    word-break:break-word
 }
-
 
 #text {
     font-family:'Rokkitt', serif;

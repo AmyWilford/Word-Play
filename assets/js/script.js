@@ -30,8 +30,9 @@ let newWordEl = document.getElementById('newWord');
 let letterInput = document.querySelector('#letter-input');
 let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
+let bankAreaEl = document.querySelector('#bank-area')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
-
+let guessedWordEl = document.querySelector('#guessed-word');
 // Function to start game play and reset styles
 
 function startGame(){
@@ -55,6 +56,7 @@ function startGame(){
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
     letterbankEl.textContent = '';
+    guessedWordEl.textContent = '';
     document.querySelector('#text').textContent = '';
     hintCount=0;
     homeScreenEl.style.display='none'
@@ -177,6 +179,7 @@ function getHints(ranWord){
 // let wordInput;
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
+let guessWordArr = [];
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
     let wordInput = letterInput.value.toLowerCase();
@@ -196,12 +199,18 @@ let commonLettersArr = [];
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
         letterbankEl.textContent = onlyCommonLetters;
+
+        guessWordArr.push(wordInput);
+        console.log(guessWordArr)
+        guessedWordEl.textContent = guessWordArr;
        } 
        else if (wordInput === ranWord) {
         document.querySelector('#text').textContent = ranWord;
         nextClueBtn.style.display ='none';
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
+        guessedWordEl.style.display = 'none';
+        bankAreaEl.style.display = 'none';
         gameplayWordButton.style.display = 'block';
         win = true;
         calculateScore(score);
@@ -230,6 +239,8 @@ function newHint() {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
+        guessedWordEl.style.display = 'none';
+        bankAreaEl.style.display = 'none';
         warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
