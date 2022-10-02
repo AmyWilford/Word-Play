@@ -59,6 +59,7 @@ function startGame(){
     hintCount=0;
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
+    commonLettersArr = [];
     wordGen();
     setTimeout(newHint,4000)
     setTimeout(showButtons,4000)
@@ -184,7 +185,7 @@ let commonLettersArr = [];
     lettersInRanWord = ranWord.split("");
   
     if (wordInput.length !== ranWord.length){
-        document.getElementById('input-alert').textContent = 'Your word is five letters long - guess again';
+        document.getElementById('input-alert').textContent = 'Your word is ' +ranWord.length + ' letters long - guess again';
     } 
     else if (wordInput.length === ranWord.length && wordInput !== ranWord){
         document.getElementById('input-alert').textContent = '';

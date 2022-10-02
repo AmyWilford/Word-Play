@@ -12,7 +12,7 @@ h4 {
 }
 
 main {
-    border: 10px solid #031C3D;
+    border-top: 10px solid #031C3D;
     /* min-height: 90vh; */
     margin: 50px;
 }
