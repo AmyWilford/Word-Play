@@ -17,8 +17,6 @@ playerWins = playerScore.wins;
 playerLoses = playerScore.loses;
 console.log(playerWins)
 console.log(playerLoses)
-// let winPercent;
-// let losePercent
 
 // Function to calculate stats percentages
 function statPercents(wins, loses) {
@@ -26,20 +24,22 @@ function statPercents(wins, loses) {
     let winPercent;
     let losePercent;
     if(loses == 0) {
-        winPercent === 100
-        losePercent === 0
-    } else if (loses !==0) {
+        winPercent = 100
+        losePercent = 0
+    } else if (wins == 0) {
+        winPercent =0
+        losePercent=100
+    } else if (loses !==0 && wins !==0) {
         winPercent = Math.floor((wins/totalPlays)*100);
         console.log(winPercent);
         losePercent = 100 - winPercent;
-
-     
     }
+
     console.log(winPercent, losePercent)
 
     let statusWinEl = document.getElementById('statusbar-win');
-    let statusLoseEl = document.getElementById('statusbar-lose')
-    statusLoseEl.setAttribute('value', losePercent);
+    // let statusLoseEl = document.getElementById('statusbar-lose')
+    // statusLoseEl.setAttribute('value', losePercent);
     statusWinEl.setAttribute('value', winPercent);
 }
 statPercents(playerWins, playerLoses)
@@ -57,6 +57,9 @@ function showWords(array){
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
 
+        console.log(array[i].synonym);
+        let synString = (array[i].synonym).join(" , ");
+        console.log(synString);
 
         // add event listener to each button
         // Pull API details into modal
@@ -65,9 +68,9 @@ function showWords(array){
             modalTitle.textContent = array[i].word 
             modalPartSpeech.textContent = array[i].speechPart;
             modalDefEl.textContent = array[i].definition;
-            modalSynEl.textContent = array[i].synonym;
+            modalSynEl.textContent = 'Synonyms: ' + (array[i].synonym).join(', ');
             modalAntEl.textContent = array[i].antonym;
-            // modalPhraseEl.textContent = 
+            modalDictLink.href=array[i].DictionaryLink;
             $(document).ready(function(){
                 $("#wordModal").modal("show");
             });
@@ -79,11 +82,11 @@ function showWords(array){
 function goHome() {
     document.location.href ='index.html'
 }
-
+// Function to load wordbank buttons 
 showWords(loadedStorage);
+
+// Event Listener to go to home page on 'home' button click
 homeButtonEl.addEventListener('click', goHome);
-
-
 
 // finds the index of the word in the array and deletes it
 function deleteWord(){
@@ -106,6 +109,3 @@ function deleteWord(){
 }
 
 wordDeleteBtn.addEventListener('click', deleteWord)
-
-
-// load stats bar (possibly Bulma)
