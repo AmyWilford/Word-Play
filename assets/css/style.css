@@ -20,6 +20,10 @@ main {
 
 .subtitle{
     text-align: left;
+    position: relative;
+    left: 300px;
+    width: fit-content;
+    
 }
 
 #hint-area {
