@@ -7,14 +7,16 @@ let synOne;
 let synTwo;
 let hintDef;
 let antOne;
-let turns = 0
-let totalScore;
+// let turns = 0
+// let totalScore;
 let hints = [];
 let win;
 let hintCount=0;
 let warning;
+// let hintHeader = document.createElement('h5');
 
-
+let hintHeader;
+let score = loadScores();
 
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
@@ -27,13 +29,25 @@ let newWordEl = document.getElementById('newWord');
 let letterInput = document.querySelector('#letter-input');
 let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
-
-
+let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 
 // Function to start game play and reset styles
 
 function startGame(){
-    // warning.replaceWith(nextClueBtn);
+    document.getElementById('hint-box').textContent= '';
+    if (!score) {
+         score = {
+            wins: 0,
+           loses: 0,
+        };
+    } else;
+    score;
+        if (warning) {
+        warning.remove();      
+    };
+    document.querySelector('h3').style.display ='block'
+    document.getElementById('input-alert').textContent = '';
+    gameplayWordButton.style.display = 'none';
     hints =[];
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
@@ -41,7 +55,6 @@ function startGame(){
     nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
-    // hintEl.textContent = '';
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     wordGen();
@@ -59,15 +72,17 @@ function wordGen(){
     .then(function (data) {
     console.log(data)
     // console.log(data[0])
-    ranWord = data.word
+    ranWord = data.word;
+    ranWord = ranWord.toLowerCase();
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
-    if (ranWord.length<5){
-        wordGen()
-    }  if (ranWord.length>9){
+    if (ranWord.length !=5){
         wordGen()
     }
+    // }  if (ranWord.length>9){
+    //     wordGen()
+    // }
    // check word bank to see if word already exists, refetch if it does, else continue
     else if (wordBank.includes(ranWord)){
         wordGen()
@@ -131,6 +146,7 @@ function getHints(ranWord){
 
         ranWordObj = {
             word: ranWord,
+            speechPart: speechPart,
             synonym: synOne + ' , ' + synTwo,
             antonym: antOne,
             definition: hintDef,
@@ -140,7 +156,7 @@ function getHints(ranWord){
         console.log(wordBank);
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
         // let hintSynonyms = synOne + ', '+ synTwo;
-        let firstClue = speechPart + "  ( " + ranWord.length + " ) " + hintDef;
+        let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
         hints.push(firstClue, synOne, synTwo, antOne);
         // Console log all available hints
@@ -148,15 +164,20 @@ function getHints(ranWord){
     };
 })}
 
+// let wordInput;
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
-    let wordInput = letterInput.value;
+    let wordInput = letterInput.value.toLowerCase();
     let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
   
-    if (wordInput !== ranWord){
+    if (wordInput.length !== ranWord.length){
+        document.getElementById('input-alert').textContent = 'Your word is five letters long - guess again';
+    } 
+    else if (wordInput.length === ranWord.length && wordInput !== ranWord){
+        document.getElementById('input-alert').textContent = '';
         newHint();
           //set the common letters;
         let commonLetters = wordInputArr.filter(x => lettersInRanWord.includes(x));
@@ -164,7 +185,6 @@ let commonLettersArr = [];
         commonLettersArr.push(commonLetters);
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
-        console.log(onlyCommonLetters)
         letterbankEl.textContent = onlyCommonLetters;
        } 
        else if (wordInput === ranWord) {
@@ -172,100 +192,46 @@ let commonLettersArr = [];
         nextClueBtn.style.display ='none';
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
+        gameplayWordButton.style.display = 'block';
         win = true;
-        calculateScore(retrievedScore);
-
-        }
+        calculateScore(score);
+        } 
        letterInput.value = '';
       }
     )
   
 // function to clear hint and guess area and replace with definition etc.
-// function to loop back and pick new word
-// function to update stats
 
-
-// function to get next clue after wrong guess or clue request
-// function to reveal first clue on page load - and progressively after on text input or clue request click
-
+// Function to generate hints (and adjust displayed items through game play)
 function newHint() {
-    
     document.querySelector('h3').style.display ='none'
-
-    console.log(hintCount);
-    let hintHeader = document.createElement('h4');
-    hintHeader.textContent = hints[hintCount];
-    hintEl.append(hintHeader);
-    if(hintCount === 3) {
+    let hintHeader = document.createElement('h5');
+    hintHeader.textContent = hints[hintCount]
+    document.getElementById('hint-box').append(hintHeader)
+    if(hintCount === 3 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
         warning.textContent = 'final guess'
-        nextClueBtn.replaceWith(warning);
-    } else if (hintCount === 4) {
+        nextClueBtn.style.display = 'none';
+        document.getElementById('game-button-area').prepend(warning);     
+       
+    } else if (hintCount === 4 ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
         warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
+        gameplayWordButton.style.display = 'block';
+        !win;
+        calculateScore(score);
     }
-    // warning.replaceWith(nextClueBtn);
     hintCount++
-    console.log(hintCount);
     return;
-    }
-   
-
-
-// function gamePlay(){
-//     console.log('gameplay')
-// }
-
-    // document.getElementById('hint-box').textContent = speechPart + "(" + ranWord.length + ")" + hintDef
-    
-
-    // function for next hint button or after each wrong play
-// function nextHint(){
-//     if (turns<5){
-//         console.log('next clue button clicked')
-//         newHint = document.createElement('h4')
-//         newHint.classlist.add('hint')
-//         newHint.textContent = hints[0]
-//         hintEl.appendChild(newHint)
-//         hints.shift()
-//         console.log(hints)
-//         turns++
-//     }
-//     // else roundOver()
-// }
-
-function loadStorage() {
-    let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
-    return loadedStorage;
 }
 
-function openWordbank(){
-    document.location.href ='wordbank.html'
-}
-
-startBtn.addEventListener('click', startGame);
-wbBtn.addEventListener('click', openWordbank)   
-newWordEl.addEventListener('click', startGame);
-nextClueBtn.addEventListener('click', newHint);
-
-
-// Function to calculate score and save in storage
-let score = {
-    wins: 0,
-    loses: 0,
-};
-
-localStorage.setItem('player-score', JSON.stringify(score))
-
-let retrievedScore = JSON.parse(localStorage.getItem('player-score'));
-console.log('retrievedScore', retrievedScore);
-
+// Function to calculate score
 function calculateScore(scoreObj) {
     if(win) {
         let newWin = scoreObj.wins+1;
@@ -275,15 +241,37 @@ function calculateScore(scoreObj) {
         let newLose = scoreObj.loses+1;
         scoreObj.loses = newLose;
         console.log(scoreObj.loses);
-
     };
     saveScore(scoreObj);
     console.log(scoreObj);
 }
-
+// function save current scores to local storage
 function saveScore(score){
     localStorage.setItem('player-score', JSON.stringify(score))
 }
 
-calculateScore(retrievedScore);
+// Function to load storedscores on each game play so that scores can update each game
+function loadScores() {
+    let loadedScores = JSON.parse(localStorage.getItem('player-score'));
+    return loadedScores;
+}
+
+// function to load stored wordbank words on game replay
+function loadStorage() {
+    let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
+    return loadedStorage;
+}
+// function to open wordbank page
+function openWordbank(){
+    document.location.href ='wordbank.html'
+}
+
+// Event Listeners - page buttons
+startBtn.addEventListener('click', startGame);
+wbBtn.addEventListener('click', openWordbank)   
+gameplayWordButton.addEventListener('click', openWordbank);
+newWordEl.addEventListener('click', startGame);
+nextClueBtn.addEventListener('click', newHint);
+
+
 

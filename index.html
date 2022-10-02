@@ -18,23 +18,27 @@
     <!-- Broswer Main Area -->
     <main class="container">
       <!-- homepage section -->
-      <section id="home-page" class="home-page row align-items-center">
-        <div class="jumbotron text-center bg-white align-middle">
-          <h1 class=" display-1 font-weight-bold">wordplay</h1>
-          <p class="lead mt-5">The game that tests your knowledge behind the word</p>
-          <p class="lead">
+      <section id="home-page" class="home-page">
+        <div class="jumbotron text-center bg-white d-flex flex-column justify-content-between align-middle">
+          <h1 class=" custom-title font-weight-bold">wordplay</h1>
+          <p class="lead mt-5">word.play | \ ˈwərd-ˌplā</p>
+          <p class="lead"><i>def. playful use of words: verbal wit</i></p>
+          <div class="lead">
             <button class="standard-button" role="button" id="start-btn">play</button>
-          </p>
+            <br>
+            <button class="standard-button" role="button" id="wb-btn">wordbank</button>
+          </div>
         </div>
-        <div class="button-footer d-flex w-100 justify-content-end">
+        <!-- <div class="">
           <button class="standard-button" role="button" id="wb-btn">wordbank</button>
-        </div>
+        </div> -->
      </section>
 
      <!-- Game Play Section -->
      <section id="play-game">
       <div id="hint-area" class="m-3">
-        <h3 id="hint-box">Finding you a word....</h3>
+        <h3>Finding you a word....</h3>
+        <div id="hint-box"></div>
       </div>
       <!-- <div class="row w-100"> -->
       <div id="word-guess" class=" w-100 d-flex flex-column justify-content-center">
@@ -43,11 +47,13 @@
             <div id="text"></div> 
             <form id="submitform" class="mr-3">
               <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              <p id="input-alert"></p>
             </form>
             <div id="letterbank" class="w-50 p-2"></div>
-            <div class="d-flex justify-content-center align-items-center">
+            <div id="game-button-area" class="d-flex justify-content-center align-items-center">
               <button id="next-clue" class="standard-button" role="button">request hint</button>
               <button id="newWord"class="standard-button" role ="button">new word</button>
+              <button id="gameplay-wordbankbutton" class="standard-button text-right" role="button">wordbank</button>
             </div>
           <!-- </div> -->
     </section>

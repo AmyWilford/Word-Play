@@ -1,11 +1,10 @@
 /* Universal styles */
 * {
     padding: 0;
-    margin: 0;
     color: #031C3D;
     font-family:'Open Sans', sans-serif;
 }
-h1,
+
 h2,
 h3,
 h4 {
@@ -13,10 +12,9 @@ h4 {
 }
 
 main {
-    border: 15px solid #031C3D;
-    margin: 50px;
+    border-top: 10px solid #031C3D;
     min-height: 90vh;
-    position: relative;
+    margin: 50px;
 }
 #hint-area {
     height: 400px;
@@ -25,7 +23,6 @@ main {
 }
 .standard-button,
 .warning-button {
-    letter-spacing: .1rem;
     color: white;
     margin: 20px;
     padding: 0.4rem 2rem;
@@ -56,17 +53,17 @@ main {
 
 /* HomePage Styles */
 .home-page {
-    min-height: 75vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     display: none;
 }
-/* .custom-title {
+.custom-title {
     font-family:'Rokkitt', serif;
-    font-size: 8em;
-    letter-spacing: .4rem;
+    font-size: 7em;
+    letter-spacing: .3rem;
     font-weight: 600;
-} */
+}
 
 /* Gameplay Styles */
 
@@ -108,10 +105,20 @@ main {
     font-family:'Rokkitt', serif;
     font-size: 4rem;
     text-align: center;
-
 }
 
+#input-alert {
+    color: red;
+    font-style: italic;
+}
 /* wordbank.html styles */
+.my-section {
+    height: 75vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .wordbutton {
     padding: .5rem 3rem;
     border-radius: 20px;
@@ -124,15 +131,17 @@ main {
     z-index: 1;
 }
 
-.button-footer {
-    position: absolute;
-    bottom: 0;
+progress {
+    text-align: center;
 }
+progress:after {
+    content: attr(value)'%';
+  }
 
 .modal-body > p {
     word-wrap: break-word;
-
 }
+
 /* flashing cursor at end of hints */
 #hint-area::after {
     content: "";
@@ -148,3 +157,10 @@ main {
       opacity: 0;
     }
   }
+
+/* Media Queries */
+@media only screen and (max-width: 550px) {
+.custom-title {
+    font-size: 4rem;
+}
+}
