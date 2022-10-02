@@ -47,11 +47,6 @@ main {
     color: #031C3D;
     border: 4px solid #031C3D;
 }
-/* .standard-button:focus {
-    outline: 1;
-    outline-color: #031C3D;
-    outline-style:inset;
-} */
 
 /* HomePage Styles */
 .home-page {
@@ -96,6 +91,11 @@ main {
 #submitform {
     width: 65%;
 }
+#guessed-word{
+    padding-top: 2rem;
+    letter-spacing: 1px !important;
+}
+
 #bank-area{
     background-color: #E4E4E4;
     margin: 20px;
@@ -106,8 +106,9 @@ main {
     letter-spacing: 10px;
     position: relative;
     word-break:break-word
-
 }
+
+
 
 #text {
     font-family:'Rokkitt', serif;
