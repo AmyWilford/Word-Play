@@ -34,6 +34,8 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
+    nextClueBtn.style.display ='none';
+    newWordEl.style.display ='none';
     document.getElementById('hint-box').textContent= '';
     if (!score) {
          score = {
@@ -57,8 +59,8 @@ function startGame(){
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     wordGen();
-    setTimeout(newHint,3000)
-    setTimeout(showButtons,3000)
+    setTimeout(newHint,4000)
+    setTimeout(showButtons,4000)
 }
 
 function showButtons(){
