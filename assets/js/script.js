@@ -59,6 +59,7 @@ function startGame(){
     hintCount=0;
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
+    commonLettersArr = [];
     wordGen();
     setTimeout(newHint,4000)
     setTimeout(showButtons,4000)
@@ -85,7 +86,9 @@ function wordGen(){
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
-    if (ranWord.length !=5){
+    if (ranWord.length < 5){
+        wordGen()
+    } else if (ranWord.length > 7) {
         wordGen()
     }
     // }  if (ranWord.length>9){
@@ -156,7 +159,7 @@ function getHints(ranWord){
         ranWordObj = {
             word: ranWord,
             speechPart: speechPart,
-            synonym: synOne + ' , ' + synTwo,
+            synonym: hintSyns,
             antonym: antOne,
             definition: hintDef,
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`       
@@ -184,7 +187,7 @@ let commonLettersArr = [];
     lettersInRanWord = ranWord.split("");
   
     if (wordInput.length !== ranWord.length){
-        document.getElementById('input-alert').textContent = 'Your word is five letters long - guess again';
+        document.getElementById('input-alert').textContent = 'Your word is ' +ranWord.length + ' letters long - guess again';
     } 
     else if (wordInput.length === ranWord.length && wordInput !== ranWord){
         document.getElementById('input-alert').textContent = '';

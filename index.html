@@ -18,12 +18,13 @@
 <body>
     <!-- Broswer Main Area -->
     <main class="container">
+
       <!-- homepage section -->
       <section id="home-page" class="home-page">
         <div class="jumbotron text-center bg-white d-flex flex-column justify-content-between align-middle">
           <h1 class=" custom-title font-weight-bold">wordplay</h1>
           <div class="subtitle">
-          <p class="lead mt-2">word.play | \ ˈwərd-ˌplā</p>
+          <p class="lead mt-2 ">word.play | \ ˈwərd-ˌplā</p>
           <p class="lead"><i>1. def. playful use of words: verbal wit</i></p>
           <p class="lead"><i>2. a game to test and improve your vocabulary</i></p>
         </div>
@@ -33,9 +34,6 @@
             <button class="standard-button" role="button" id="wb-btn">wordbank</button>
           </div>
         </div>
-        <!-- <div class="">
-          <button class="standard-button" role="button" id="wb-btn">wordbank</button>
-        </div> -->
      </section>
 
      <!-- Game Play Section -->
@@ -44,23 +42,19 @@
         <h3>Finding you a word....</h3>
         <div id="hint-box"></div>
       </div>
-      <!-- <div class="row w-100"> -->
       <div id="word-guess" class=" w-100 d-flex flex-column justify-content-center">
-        <!-- <div class="col-12 col-md-7 d-flex flex-column justify-content-end"> -->
-          <!-- <div class="">       -->
-            <div id="text"></div>
-            <form id="submitform">
-              <input id="letter-input" type="text" class="form-control" aria-label="Default"
-                aria-describedby="inputGroup-sizing-default" placeholder="enter your guess here">
-              <p id="input-alert"></p>
-            </form>
-            <div id="letterbank" class="w-50 p-2"></div>
-            <div id="game-button-area" class="d-flex justify-content-center align-items-center">
-              <button id="next-clue" class="standard-button" role="button">request hint</button>
-              <button id="newWord" class="standard-button" role="button">new word</button>
-              <button id="gameplay-wordbankbutton" class="standard-button text-right" role="button">wordbank</button>
-            </div>
-          <!-- </div> -->
+        <div id="text"></div>
+        <form id="submitform">
+          <input id="letter-input" type="text" class="form-control" aria-label="Default"
+            aria-describedby="inputGroup-sizing-default" placeholder="enter your guess here">
+          <p id="input-alert"></p>
+        </form>
+        <div id="letterbank" class="w-50 p-2"></div>
+        <div id="game-button-area" class="row d-flex justify-content-center align-items-center">
+          <button id="next-clue" class="col-8 col-sm-4 standard-button m-2" role="button">new hint</button>
+          <button id="newWord" class="col-8 col-sm-4 m-2 standard-button" role="button">new word</button>
+          <button id="gameplay-wordbankbutton" class="standard-button text-right" role="button">wordbank</button>
+        </div>
     </section>
     </main>
 
