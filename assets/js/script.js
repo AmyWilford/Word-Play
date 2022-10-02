@@ -79,6 +79,9 @@ function wordGen(){
         if(response.ok) {
             return response.json();
         };
+        if(!response.ok) {
+            $('h3').text="No word found. Please Try again"
+        };
     })
     .then(function (data) {
     console.log(data)
