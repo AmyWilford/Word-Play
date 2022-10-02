@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylereset" href="./assets/css/reset.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz@0,7..72;1,7..72&display=swap" rel="stylesheet">
@@ -12,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,300&family=Rokkitt:wght@100;300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css"/>
-    <title>Word Game</title>
+    <title>wordplay</title>
 </head>
 <body>
     <!-- Broswer Main Area -->
@@ -21,8 +22,11 @@
       <section id="home-page" class="home-page">
         <div class="jumbotron text-center bg-white d-flex flex-column justify-content-between align-middle">
           <h1 class=" custom-title font-weight-bold">wordplay</h1>
-          <p class="lead mt-5">word.play | \ ˈwərd-ˌplā</p>
-          <p class="lead"><i>def. playful use of words: verbal wit</i></p>
+          <div class="subtitle">
+          <p class="lead mt-2">word.play | \ ˈwərd-ˌplā</p>
+          <p class="lead"><i>1. def. playful use of words: verbal wit</i></p>
+          <p class="lead"><i>2. a game to test and improve your vocabulary</i></p>
+        </div>
           <div class="lead">
             <button class="standard-button" role="button" id="start-btn">play</button>
             <br>
@@ -36,7 +40,7 @@
 
      <!-- Game Play Section -->
      <section id="play-game">
-      <div id="hint-area" class="m-3">
+      <div id="hint-area" >
         <h3>Finding you a word....</h3>
         <div id="hint-box"></div>
       </div>
@@ -44,15 +48,16 @@
       <div id="word-guess" class=" w-100 d-flex flex-column justify-content-center">
         <!-- <div class="col-12 col-md-7 d-flex flex-column justify-content-end"> -->
           <!-- <div class="">       -->
-            <div id="text"></div> 
-            <form id="submitform" class="mr-3">
-              <input id="letter-input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <div id="text"></div>
+            <form id="submitform">
+              <input id="letter-input" type="text" class="form-control" aria-label="Default"
+                aria-describedby="inputGroup-sizing-default" placeholder="enter your guess here">
               <p id="input-alert"></p>
             </form>
             <div id="letterbank" class="w-50 p-2"></div>
             <div id="game-button-area" class="d-flex justify-content-center align-items-center">
               <button id="next-clue" class="standard-button" role="button">request hint</button>
-              <button id="newWord"class="standard-button" role ="button">new word</button>
+              <button id="newWord" class="standard-button" role="button">new word</button>
               <button id="gameplay-wordbankbutton" class="standard-button text-right" role="button">wordbank</button>
             </div>
           <!-- </div> -->

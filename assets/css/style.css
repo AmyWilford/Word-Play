@@ -12,14 +12,29 @@ h4 {
 }
 
 main {
-    border-top: 10px solid #031C3D;
-    min-height: 90vh;
+    border: 10px solid #031C3D;
+    /* min-height: 90vh; */
     margin: 50px;
 }
-#hint-area {
-    height: 400px;
+
+.subtitle{
+    text-align: left;
+    
+    width: fit-content;
+    
+}
+
+h5{
+    font-family: 'Literata', serif;
     font-style: italic;
-    font-family: literata;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#hint-area {
+    height: 300px;
+    font-style: italic;
+    margin: 3% 2%;
 }
 .standard-button,
 .warning-button {
@@ -87,19 +102,28 @@ main {
 }
 
 #word-guess {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
+    /* bottom: ; */
     margin: 20px 0px;
+    align-items: center;
 }
 
 #submitform {
-    width: 65%;
+    width: 40%;
+    border: none;
+    
 }
 #letterbank {
     background-color: #E4E4E4;
     margin: 20px;
     min-height: 8rem;
+    font-size: 200%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    position: relative;
 }
+
 
 #text {
     font-family:'Rokkitt', serif;
@@ -127,8 +151,11 @@ main {
     background-color: #E4E4E4;
 }
 
-#next-clue{
+
+
+#next-clue, #newWord{
     z-index: 1;
+    display: none;
 }
 
 progress {

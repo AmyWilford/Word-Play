@@ -7,6 +7,7 @@ let synOne;
 let synTwo;
 let hintDef;
 let antOne;
+let firstLetter;
 // let turns = 0
 // let totalScore;
 let hints = [];
@@ -34,6 +35,8 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
+    nextClueBtn.style.display ='none';
+    newWordEl.style.display ='none';
     document.getElementById('hint-box').textContent= '';
     if (!score) {
          score = {
@@ -52,13 +55,18 @@ function startGame(){
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
     letterbankEl.textContent = '';
-    nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     wordGen();
-    setTimeout(newHint,3000)
+    setTimeout(newHint,4000)
+    setTimeout(showButtons,4000)
+}
+
+function showButtons(){
+    nextClueBtn.style.display ='block';
+    newWordEl.style.display ='block';
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
@@ -114,13 +122,13 @@ function getHints(ranWord){
         // makes sure all parts of word are taken from same usage
 
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = "def. "+ data[wordCat].shortdef
+        hintDef = "def."+ data[wordCat].shortdef
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-
-        synOne ="first synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="second synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        firstLetter = "it begins with " + ranWord.charAt(0)
+        synOne ="syn. 1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn. 2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
@@ -138,6 +146,7 @@ function getHints(ranWord){
         console.log(synOne)
         console.log(synTwo)
         console.log(hintDef)
+        console.log(firstLetter)
         // adds hints to an array to be used when revealing hints
         // hints.push(synOne, synTwo)
         console.log("word: "+ ranWord)
@@ -150,7 +159,8 @@ function getHints(ranWord){
             synonym: synOne + ' , ' + synTwo,
             antonym: antOne,
             definition: hintDef,
-        };
+            DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`       
+         };
 
         wordBank.push(ranWordObj);
         console.log(wordBank);
@@ -158,7 +168,7 @@ function getHints(ranWord){
         // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
-        hints.push(firstClue, synOne, synTwo, antOne);
+        hints.push(firstClue, synOne, synTwo, antOne, firstLetter);
         // Console log all available hints
         console.log(hints)
     };
@@ -208,7 +218,7 @@ function newHint() {
     let hintHeader = document.createElement('h5');
     hintHeader.textContent = hints[hintCount]
     document.getElementById('hint-box').append(hintHeader)
-    if(hintCount === 3 && !win) {
+    if(hintCount === 4 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
@@ -216,7 +226,7 @@ function newHint() {
         nextClueBtn.style.display = 'none';
         document.getElementById('game-button-area').prepend(warning);     
        
-    } else if (hintCount === 4 ) {
+    } else if (hintCount === 5 ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
