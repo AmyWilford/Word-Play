@@ -52,13 +52,18 @@ function startGame(){
     letterInput.style.display = 'block';
     letterbankEl.style.display = 'block';
     letterbankEl.textContent = '';
-    // nextClueBtn.style.display ='block';
     document.querySelector('#text').textContent = '';
     hintCount=0;
     homeScreenEl.style.display='none'
     gamePlayEL.style.display='block'
     wordGen();
     setTimeout(newHint,3000)
+    setTimeout(showButtons,3000)
+}
+
+function showButtons(){
+    nextClueBtn.style.display ='block';
+    newWordEl.style.display ='block';
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'

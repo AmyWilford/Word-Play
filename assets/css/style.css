@@ -27,9 +27,10 @@ main {
 }
 
 #hint-area {
-    height: 400px;
+    height: 300px;
     font-style: italic;
     font-family: literata;
+    margin: 3% 2%;
 }
 .standard-button,
 .warning-button {
@@ -147,8 +148,9 @@ main {
 
 
 
-#next-clue{
+#next-clue, #newWord{
     z-index: 1;
+    display: none;
 }
 
 progress {
