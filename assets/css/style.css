@@ -16,6 +16,7 @@ main {
     margin: 50px;
     min-height: 90vh;
     position: relative;
+    margin: 2%;
 }
 
 .subtitle{
@@ -36,7 +37,6 @@ h5{
 #hint-area {
     height: 400px;
     font-style: italic;
-    font-family: literata;
     margin: 3% 1%;
 }
 .standard-button,
