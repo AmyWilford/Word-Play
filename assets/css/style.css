@@ -20,13 +20,14 @@ main {
 
 .subtitle{
     text-align: left;
-    
+    font-family: 'Alkalami', serif;
     width: fit-content;
+    padding-left: 30%;
     
 }
 
 h5{
-    font-family: 'Alkalami', serif;
+    font-family: 'Open Sans', serif;
     font-style: italic;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
@@ -36,6 +37,7 @@ h5{
     height: 400px;
     font-style: italic;
     font-family: literata;
+    margin: 3% 1%;
 }
 .standard-button,
 .warning-button {
@@ -106,11 +108,17 @@ h5{
     position: absolute;
     bottom: 0;
     margin: 20px 0px;
+    align-items: center;
 }
 
 #submitform {
-    width: 65%;
+    width: 45%;
 }
+
+#letter-input{
+    text-align: center;
+}
+
 #letterbank {
     background-color: #E4E4E4;
     margin: 20px;
@@ -172,5 +180,9 @@ h5{
     }
     .custom-title {
         font-size: 4rem;
+    }
+    .subtitle{
+              padding-left: 0%;
+        
     }
     }

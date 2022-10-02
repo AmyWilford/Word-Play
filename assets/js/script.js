@@ -31,10 +31,13 @@ let letterInput = document.querySelector('#letter-input');
 let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
+let gameBox = document.querySelector('.container')
+
 
 // Function to start game play and reset styles
 
 function startGame(){
+    gameBox.style.borderWidth = '10px'
     letterInput.style.display = 'none';
     letterbankEl.style.display = 'none';
     nextClueBtn.style.display ='none';
