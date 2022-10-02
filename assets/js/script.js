@@ -86,7 +86,9 @@ function wordGen(){
     console.log(ranWord)
     console.log(ranWord.length)
     // check to see if word is between 5 & 9 letters
-    if (ranWord.length !=5){
+    if (ranWord.length < 5){
+        wordGen()
+    } else if (ranWord.length > 7) {
         wordGen()
     }
     // }  if (ranWord.length>9){
