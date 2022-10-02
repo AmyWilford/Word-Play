@@ -15,13 +15,11 @@ main {
     border: 10px solid #031C3D;
     /* min-height: 90vh; */
     margin: 50px;
-    align-self: baseline;
 }
 
 .subtitle{
     text-align: left;
-    position: relative;
-    left: 300px;
+    
     width: fit-content;
     
 }
@@ -117,8 +115,9 @@ main {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 10px;
-   
+    position: relative;
 }
+
 
 #text {
     font-family:'Rokkitt', serif;

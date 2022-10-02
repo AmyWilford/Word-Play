@@ -7,6 +7,7 @@ let synOne;
 let synTwo;
 let hintDef;
 let antOne;
+let firstLetter;
 // let turns = 0
 // let totalScore;
 let hints = [];
@@ -125,9 +126,9 @@ function getHints(ranWord){
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-
-        synOne ="first synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="second synonym: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        firstLetter = "first letter: " + ranWord.charAt(0)
+        synOne ="syn. 1: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn. 2: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
@@ -145,6 +146,7 @@ function getHints(ranWord){
         console.log(synOne)
         console.log(synTwo)
         console.log(hintDef)
+        console.log(firstLetter)
         // adds hints to an array to be used when revealing hints
         // hints.push(synOne, synTwo)
         console.log("word: "+ ranWord)
@@ -165,7 +167,7 @@ function getHints(ranWord){
         // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
-        hints.push(firstClue, synOne, synTwo, antOne);
+        hints.push(firstClue, synOne, synTwo, antOne, firstLetter);
         // Console log all available hints
         console.log(hints)
     };
