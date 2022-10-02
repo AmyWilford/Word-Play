@@ -35,6 +35,8 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 // Function to start game play and reset styles
 
 function startGame(){
+    letterInput.style.display = 'none';
+    letterbankEl.style.display = 'none';
     nextClueBtn.style.display ='none';
     newWordEl.style.display ='none';
     document.getElementById('hint-box').textContent= '';
@@ -52,8 +54,7 @@ function startGame(){
     document.getElementById('input-alert').textContent = '';
     gameplayWordButton.style.display = 'none';
     hints =[];
-    letterInput.style.display = 'block';
-    letterbankEl.style.display = 'block';
+
     letterbankEl.textContent = '';
     document.querySelector('#text').textContent = '';
     hintCount=0;
@@ -67,6 +68,8 @@ function startGame(){
 function showButtons(){
     nextClueBtn.style.display ='block';
     newWordEl.style.display ='block';
+    letterInput.style.display = 'block';
+    letterbankEl.style.display = 'block';
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
