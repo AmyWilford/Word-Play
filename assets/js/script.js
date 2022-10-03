@@ -13,7 +13,6 @@ let firstLetter;
 let hints = [];
 let win;
 let hintCount=0;
-let warning;
 // let hintHeader = document.createElement('h5');
 
 let hintHeader;
@@ -33,8 +32,6 @@ let letterbankEl = document.querySelector('#letterbank')
 let bankAreaEl = document.querySelector('#bank-area')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 let gameBox = document.querySelector('.container')
-
-
 let guessedWordEl = document.querySelector('#guessed-word');
 // Function to start game play and reset styles
 
@@ -44,6 +41,7 @@ function startGame(){
     letterbankEl.style.display = 'none';
     nextClueBtn.style.display ='none';
     newWordEl.style.display ='none';
+    bankAreaEl.style.display = 'block';
     document.getElementById('hint-box').textContent= '';
     if (!score) {
          score = {
@@ -52,9 +50,6 @@ function startGame(){
         };
     } else;
     score;
-        if (warning) {
-        warning.remove();      
-    };
     document.querySelector('h3').style.display ='block'
     document.getElementById('input-alert').textContent = '';
     gameplayWordButton.style.display = 'none';
@@ -141,7 +136,7 @@ function getHints(ranWord){
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-        firstLetter = "it begins with " + ranWord.charAt(0)
+        firstLetter = "This is your last guess. It begins with " + ranWord.charAt(0).toUpperCase();
         synOne ="syn.1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         synTwo ="syn.2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
@@ -241,12 +236,7 @@ function newHint() {
     hintHeader.textContent = hints[hintCount]
     document.getElementById('hint-box').append(hintHeader)
     if(hintCount === 4 && !win) {
-        warning = document.createElement('button');
-        warning.setAttribute('disabled', '')
-        warning.classList.add('warning-button');
-        warning.textContent = 'final guess'
         nextClueBtn.style.display = 'none';
-        document.getElementById('game-button-area').prepend(warning);     
        
     } else if (hintCount === 5 ) {
         console.log('You Lose')
@@ -254,7 +244,6 @@ function newHint() {
         letterbankEl.style.display = 'none';
         guessedWordEl.style.display = 'none';
         bankAreaEl.style.display = 'none';
-        warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
         gameplayWordButton.style.display = 'block';
