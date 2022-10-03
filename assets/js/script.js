@@ -35,14 +35,17 @@ let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 let gameBox = document.querySelector('.container')
 let guessedWordEl = document.querySelector('#guessed-word');
 // Function to start game play and reset styles
+let guessWordArr;
 
 function startGame(){
+    guessWordArr = [];
     gameBox.style.borderWidth = '10px'
     letterInput.style.display = 'none';
     letterbankEl.style.display = 'none';
     nextClueBtn.style.display ='none';
     newWordEl.style.display ='none';
     bankAreaEl.style.display = 'block';
+    guessedWordEl.style.display = 'block';
     document.getElementById('hint-box').textContent= '';
     if (!score) {
          score = {
@@ -187,12 +190,11 @@ function getHints(ranWord){
     };
 })}
 
-// let wordInput;
 // Function to handle guess input - and reveal correct letters in letter bank
 let commonLettersArr = [];
-let guessWordArr = [];
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
+
     let wordInput = letterInput.value.toLowerCase();
     let wordInputArr = wordInput.split("");    
     lettersInRanWord = ranWord.split("");
