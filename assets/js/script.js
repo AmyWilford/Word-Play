@@ -8,6 +8,7 @@ let synTwo;
 let hintDef;
 let antOne;
 let firstLetter;
+let lastLetter;
 // let turns = 0
 // let totalScore;
 let hints = [];
@@ -135,15 +136,15 @@ function getHints(ranWord){
     else {
         // parse data into hints and choose one from each array of synonyms and antonyms
         // makes sure all parts of word are taken from same usage
-
         let wordCat = Math.floor(Math.random() * data.length)
-        hintDef = "def."+ data[wordCat].shortdef
+        hintDef = "def. "+ data[wordCat].shortdef
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         firstLetter = "it begins with " + ranWord.charAt(0)
-        synOne ="syn.1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="syn.2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        lastLetter = "and ends with " + ranWord.charAt(ranWord.length-1)
+        synOne ="syn.1: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn.2: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
@@ -162,6 +163,8 @@ function getHints(ranWord){
         console.log(synTwo)
         console.log(hintDef)
         console.log(firstLetter)
+        console.log(lastLetter)
+
         // adds hints to an array to be used when revealing hints
         // hints.push(synOne, synTwo)
         console.log("word: "+ ranWord)
@@ -183,7 +186,7 @@ function getHints(ranWord){
         // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
-        hints.push(firstClue, synOne, synTwo, antOne, firstLetter);
+        hints.push(firstClue, synOne, synTwo, firstLetter, lastLetter);
         // Console log all available hints
         console.log(hints)
     };
@@ -239,8 +242,10 @@ function newHint() {
     document.querySelector('h3').style.display ='none'
     let hintHeader = document.createElement('h5');
     hintHeader.textContent = hints[hintCount]
+    let hintMax = hints.length
+    console.log(hintMax)
     document.getElementById('hint-box').append(hintHeader)
-    if(hintCount === 4 && !win) {
+    if(hintCount === hintMax-1 && !win) {
         warning = document.createElement('button');
         warning.setAttribute('disabled', '')
         warning.classList.add('warning-button');
@@ -248,7 +253,7 @@ function newHint() {
         nextClueBtn.style.display = 'none';
         document.getElementById('game-button-area').prepend(warning);     
        
-    } else if (hintCount === 5 ) {
+    } else if (hintCount === hintMax ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
