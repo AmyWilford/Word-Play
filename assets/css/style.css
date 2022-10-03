@@ -59,18 +59,12 @@ h5{
     text-align: center;
     color: white;
     margin: 20px 0px;
-    padding: 5px 50px;
+    padding: 5px 30px;
     border-radius: 10px;
     background-color: #FF1616;
     border: 4px solid #FF1616;
 }
-/* .warning-button {
-    background-color: white;
-    border: 4px solid white;
-    color: #FF1616;
-    text-transform: uppercase;
 
-} */
 .standard-button:hover {
     background-color: white;
     color: #031C3D;
@@ -113,7 +107,7 @@ h5{
 }
 
 #word-guess {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     margin: 20px 0px;
     align-items: center;
@@ -130,13 +124,13 @@ h5{
 #letterbank {
     background-color: #E4E4E4;
     margin: 10px;
-    /* min-height: 8rem; */
     text-align: center;
     text-transform: capitalize;
 }
 #guessed-word{
     padding-top: 2rem;
     letter-spacing: 1px !important;
+    text-transform: lowercase;
 }
 
 #bank-area{
@@ -180,7 +174,7 @@ h5{
 }
 
 #statusbar{
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
 }
 
@@ -227,9 +221,10 @@ h5{
     animation: cursor-blink 1.5s steps(2) infinite;
   }
   
-  .my-section{
-    height: auto;
-  }
+  /* .my-section{
+    /* height: auto; */
+  /* } */
+
   @keyframes cursor-blink {
     0% {
       opacity: 0;
