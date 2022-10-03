@@ -171,6 +171,11 @@ h5{
     background-color: #E4E4E4;
 }
 
+#statusbar{
+    position: absolute;
+    bottom: 0;
+}
+
 #next-clue{
     z-index: 1;
 }
