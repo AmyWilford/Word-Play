@@ -16,11 +16,28 @@ main {
     margin: 50px;
     min-height: 90vh;
     position: relative;
+    margin: 2%;
 }
+
+.subtitle{
+    text-align: left;
+    font-family: 'Alkalami', serif;
+    width: fit-content;
+    padding-left: 30%;
+    
+}
+
+h5{
+    font-family: 'Open Sans', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
 #hint-area {
     height: 400px;
     font-style: italic;
-    font-family: literata;
+    margin: 3% 1%;
 }
 .standard-button,
 .warning-button {
@@ -42,10 +59,11 @@ main {
     text-transform: uppercase;
 
 }
-.standard:hover {
+.standard-button:hover {
     background-color: white;
     color: #031C3D;
     border: 4px solid #031C3D;
+    cursor: pointer;
 }
 
 /* HomePage Styles */
@@ -86,10 +104,23 @@ main {
     position: absolute;
     bottom: 0;
     margin: 20px 0px;
+    align-items: center;
 }
 
 #submitform {
-    width: 65%;
+    width: 45%;
+}
+
+#letter-input{
+    text-align: center;
+}
+
+#letterbank {
+    background-color: #E4E4E4;
+    margin: 10px;
+    /* min-height: 8rem; */
+    text-align: center;
+    text-transform: capitalize;
 }
 #guessed-word{
     padding-top: 2rem;
@@ -152,7 +183,10 @@ main {
     display: inline-block;
     animation: cursor-blink 1.5s steps(2) infinite;
   }
-
+  
+  .my-section{
+    height: auto;
+  }
   @keyframes cursor-blink {
     0% {
       opacity: 0;
@@ -160,10 +194,32 @@ main {
   }
 
   @media only screen and (max-width: 550px) {
-    *{
-        font-size: 14px;
-    }
-    .custom-title {
-        font-size: 4rem;
-    }
+    * {
+            font-size: 14px;
+        }
+    
+        #home-page
+        {
+            margin-top: 40%
+
+        }
+
+
+        .custom-title {
+            font-size: 4rem;
+        }
+    
+        #word-guess {
+            margin-left: -15px;
+        }
+    
+        .wordbutton {
+            padding: .2rem 1.1rem;
+            margin: .25rem;
+        }
+    
+        .subtitle {
+            padding-left: 0%;
+    
+        }
     }

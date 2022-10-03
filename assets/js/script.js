@@ -32,10 +32,16 @@ let submit = document.querySelector('#submitform')
 let letterbankEl = document.querySelector('#letterbank')
 let bankAreaEl = document.querySelector('#bank-area')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
+let gameBox = document.querySelector('.container')
+
+
 let guessedWordEl = document.querySelector('#guessed-word');
 // Function to start game play and reset styles
 
 function startGame(){
+    gameBox.style.borderWidth = '10px'
+    letterInput.style.display = 'none';
+    letterbankEl.style.display = 'none';
     nextClueBtn.style.display ='none';
     newWordEl.style.display ='none';
     document.getElementById('hint-box').textContent= '';
@@ -53,8 +59,7 @@ function startGame(){
     document.getElementById('input-alert').textContent = '';
     gameplayWordButton.style.display = 'none';
     hints =[];
-    letterInput.style.display = 'block';
-    letterbankEl.style.display = 'block';
+
     letterbankEl.textContent = '';
     guessedWordEl.textContent = '';
     document.querySelector('#text').textContent = '';
@@ -70,6 +75,8 @@ function startGame(){
 function showButtons(){
     nextClueBtn.style.display ='block';
     newWordEl.style.display ='block';
+    letterInput.style.display = 'block';
+    letterbankEl.style.display = 'block';
 }
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
@@ -78,6 +85,9 @@ function wordGen(){
     .then(function (response) {
         if(response.ok) {
             return response.json();
+        };
+        if(!response.ok) {
+            $('h3').text="No word found. Please Try again"
         };
     })
     .then(function (data) {
@@ -132,8 +142,8 @@ function getHints(ranWord){
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         firstLetter = "it begins with " + ranWord.charAt(0)
-        synOne ="syn. 1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="syn. 2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne ="syn.1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn.2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
