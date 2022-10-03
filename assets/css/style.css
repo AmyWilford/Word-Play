@@ -204,7 +204,10 @@ h5{
     #word-guess{
         margin-left: -15px;
     }
-
+.wordbutton{
+    padding: .2rem 1.1rem;
+    margin: .4rem;
+}
 
     .subtitle{
               padding-left: 0%;
