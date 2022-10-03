@@ -22,6 +22,8 @@ let score = loadScores();
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
+let rulesBtn = document.getElementById('rules-btn')
+
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
@@ -295,6 +297,30 @@ function loadStorage() {
 function openWordbank(){
     document.location.href ='wordbank.html'
 }
+function openRulesPage(){
+    document.location.href = 'rules.html'
+}
+
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml2');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
 
 // Event Listeners - page buttons
 startBtn.addEventListener('click', startGame);
@@ -302,6 +328,8 @@ wbBtn.addEventListener('click', openWordbank)
 gameplayWordButton.addEventListener('click', openWordbank);
 newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
+rulesBtn.addEventListener('click', openRulesPage)   
+
 
 
 

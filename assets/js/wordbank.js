@@ -9,6 +9,7 @@ let modalSynEl = document.getElementById('word-synonym');
 let modalAntEl = document.getElementById('word-antonym');
 let modalPartSpeech = document.getElementById('part-speech');
 let modalDictLink = document.getElementById('dict-link');
+let winRateEl = document.getElementById('win-rate')
 
 // Retrieve player scores from localstorage
 let playerScore = JSON.parse(localStorage.getItem('player-score')) ||'';
@@ -41,6 +42,8 @@ function statPercents(wins, loses) {
     // let statusLoseEl = document.getElementById('statusbar-lose')
     // statusLoseEl.setAttribute('value', losePercent);
     statusWinEl.setAttribute('value', winPercent);
+    winRateEl.textContent= winPercent + '% Win Rate ' 
+    
 }
 statPercents(playerWins, playerLoses)
 
