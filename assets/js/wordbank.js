@@ -1,4 +1,4 @@
-// function to get local storage and present stored word buttons
+// access HTML elements
 let wordBankEl = document.getElementById('word-bank');
 let homeButtonEl = document.getElementById('home-button')
 let modalEl = document.getElementById('wordModal');
@@ -39,8 +39,6 @@ function statPercents(wins, loses) {
     console.log(winPercent, losePercent)
 
     let statusWinEl = document.getElementById('statusbar-win');
-    // let statusLoseEl = document.getElementById('statusbar-lose')
-    // statusLoseEl.setAttribute('value', losePercent);
     statusWinEl.setAttribute('value', winPercent);
     winRateEl.textContent= winPercent + '% Win Rate ' 
 }
@@ -67,7 +65,6 @@ function showWords(array){
             modalPartSpeech.textContent = array[i].speechPart;
             modalDefEl.textContent = array[i].definition;
             modalSynEl.textContent = 'Synonyms: ' + (array[i].synonym).join(', ');
-            modalAntEl.textContent = array[i].antonym;
             modalDictLink.href=array[i].DictionaryLink;
             $(document).ready(function(){
                 $("#wordModal").modal("show");
@@ -75,18 +72,7 @@ function showWords(array){
         })
     }
 }
-
-// function to go back to home page
-function goHome() {
-    document.location.href ='index.html'
-}
-// Function to load wordbank buttons 
-showWords(loadedStorage);
-
-// Event Listener to go to home page on 'home' button click
-homeButtonEl.addEventListener('click', goHome);
-
-// finds the index of the word in the array and deletes it
+// function to delete word from wordbank
 function deleteWord(){
 
     let bankWord = modalTitle.textContent
@@ -100,10 +86,15 @@ function deleteWord(){
     console.log(loadedStorage.length)
     // resave and load array to from local storage to update the list
     localStorage.setItem('word-bank', JSON.stringify(loadedStorage))
-    //  $(`${modalTitle.textContent}`).hide(1000)
-     $('#delete-word').click(function() {
-		$(`#${modalTitle.textContent}`).fadeToggle("slow", "linear");})
-    // document.getElementById("word-bank").window.location.reload(true);
 }
 
+// function to go back to home page
+function goHome() {
+    document.location.href ='index.html'
+}
+// Function to load wordbank buttons 
+showWords(loadedStorage);
+
+// Event Listener to home and delete buttons
+homeButtonEl.addEventListener('click', goHome);
 wordDeleteBtn.addEventListener('click', deleteWord)
