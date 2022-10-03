@@ -13,7 +13,6 @@ let firstLetter;
 let hints = [];
 let win;
 let hintCount=0;
-// let warning;
 // let hintHeader = document.createElement('h5');
 
 let hintHeader;
@@ -33,8 +32,6 @@ let letterbankEl = document.querySelector('#letterbank')
 let bankAreaEl = document.querySelector('#bank-area')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 let gameBox = document.querySelector('.container')
-
-
 let guessedWordEl = document.querySelector('#guessed-word');
 // Function to start game play and reset styles
 
@@ -53,9 +50,6 @@ function startGame(){
         };
     } else;
     score;
-    //     if (warning) {
-    //     warning.remove();      
-    // };
     document.querySelector('h3').style.display ='block'
     document.getElementById('input-alert').textContent = '';
     gameplayWordButton.style.display = 'none';
@@ -242,20 +236,14 @@ function newHint() {
     hintHeader.textContent = hints[hintCount]
     document.getElementById('hint-box').append(hintHeader)
     if(hintCount === 4 && !win) {
-        // warning = document.createElement('button');
-        // warning.setAttribute('disabled', '')
-        // warning.classList.add('warning-button');
-        // warning.textContent = 'final guess'
         nextClueBtn.style.display = 'none';
-        // document.getElementById('game-button-area').prepend(warning);     
        
     } else if (hintCount === 5 ) {
         console.log('You Lose')
         letterInput.style.display = 'none';
         letterbankEl.style.display = 'none';
-        // guessedWordEl.style.display = 'none';
+        guessedWordEl.style.display = 'none';
         bankAreaEl.style.display = 'none';
-        // warning.style.display = 'none';
         document.querySelector('#text').textContent = ranWord
         hintHeader.textContent ='';
         gameplayWordButton.style.display = 'block';
