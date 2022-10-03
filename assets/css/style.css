@@ -236,8 +236,9 @@ h5{
             margin-top: 40%
 
         }
-
-
+        #bank-area{
+            width: 80%;
+        }
         .custom-title {
             font-size: 4rem;
         }
