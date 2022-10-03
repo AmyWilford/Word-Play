@@ -22,6 +22,8 @@ let score = loadScores();
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
+let rulesBtn = document.getElementById('rules-btn')
+
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
@@ -293,6 +295,9 @@ function loadStorage() {
 function openWordbank(){
     document.location.href ='wordbank.html'
 }
+function openRulesPage(){
+    document.location.href = 'rules.html'
+}
 
 // Event Listeners - page buttons
 startBtn.addEventListener('click', startGame);
@@ -300,6 +305,8 @@ wbBtn.addEventListener('click', openWordbank)
 gameplayWordButton.addEventListener('click', openWordbank);
 newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
+wbBtn.addEventListener('click', openRulesPage)   
+
 
 
 
