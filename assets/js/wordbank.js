@@ -42,7 +42,7 @@ function statPercents(wins, loses) {
     // let statusLoseEl = document.getElementById('statusbar-lose')
     // statusLoseEl.setAttribute('value', losePercent);
     statusWinEl.setAttribute('value', winPercent);
-    winRateEl.textContent= winPercent + '% Success ' 
+    winRateEl.textContent= winPercent + '% Win Rate ' 
     
 }
 statPercents(playerWins, playerLoses)
