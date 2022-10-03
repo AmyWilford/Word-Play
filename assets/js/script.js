@@ -142,7 +142,7 @@ function getHints(ranWord){
         // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
-        firstLetter = "This is your last guess. It begins with " + ranWord.charAt(0)
+        firstLetter = "This is your last guess. It begins with " + ranWord.charAt(0).toUpperCase();
         synOne ="syn.1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         synTwo ="syn.2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
