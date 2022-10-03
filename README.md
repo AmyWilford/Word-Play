@@ -26,7 +26,7 @@ At each turn, the players types in their guess. Correct letters, and guessed wor
 ![Screenshot of the wordplay image](assets/img/wordplay.jpg)
 
 ## Link:
-- https://github.com/AmyWilford/Word-Game
+- https://github.com/AmyWilford/Word-Play 
 - https://amywilford.github.io/Word-Play/
 
 ## Installation

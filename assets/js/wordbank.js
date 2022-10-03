@@ -35,7 +35,7 @@ function statPercents(wins, loses) {
         console.log(winPercent);
         losePercent = 100 - winPercent;
     }
-
+    
     console.log(winPercent, losePercent)
 
     let statusWinEl = document.getElementById('statusbar-win');
@@ -43,7 +43,6 @@ function statPercents(wins, loses) {
     // statusLoseEl.setAttribute('value', losePercent);
     statusWinEl.setAttribute('value', winPercent);
     winRateEl.textContent= winPercent + '% Win Rate ' 
-    
 }
 statPercents(playerWins, playerLoses)
 
@@ -59,8 +58,6 @@ function showWords(array){
         wordButton.setAttribute('id', array[i].word)
         wordButton.textContent =array[i].word;
         wordBankEl.append(wordButton);
-
-
 
         // add event listener to each button
         // Pull API details into modal
