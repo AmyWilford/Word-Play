@@ -142,8 +142,8 @@ function getHints(ranWord){
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         firstLetter = "it begins with " + ranWord.charAt(0)
-        synOne ="syn. 1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        synTwo ="syn. 2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synOne ="syn.1:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
+        synTwo ="syn.2:"+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         
         // runs only if word has antonyms
         if (data[wordCat].meta.ants.length>0){
