@@ -307,7 +307,7 @@ wbBtn.addEventListener('click', openWordbank)
 gameplayWordButton.addEventListener('click', openWordbank);
 newWordEl.addEventListener('click', startGame);
 nextClueBtn.addEventListener('click', newHint);
-wbBtn.addEventListener('click', openRulesPage)   
+rulesBtn.addEventListener('click', openRulesPage)   
 
 
 
