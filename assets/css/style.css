@@ -27,6 +27,10 @@ main {
     
 }
 
+#gameplay-wordbankbutton{
+text-align: center;
+}
+
 h5{
     font-family: 'Open Sans', serif;
     font-style: italic;
@@ -163,6 +167,11 @@ h5{
     border: none;
     margin: .5rem;
     background-color: #E4E4E4;
+}
+
+#statusbar{
+    position: absolute;
+    bottom: 0;
 }
 
 #next-clue{
