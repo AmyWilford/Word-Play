@@ -194,23 +194,32 @@ h5{
   }
 
   @media only screen and (max-width: 550px) {
-    *{
-        font-size: 14px;
-    }
-    .custom-title {
-        font-size: 4rem;
-    }
+    * {
+            font-size: 14px;
+        }
+    
+        #home-page
+        {
+            margin-top: 40%
 
-    #word-guess{
-        margin-left: -15px;
-    }
-.wordbutton{
-    padding: .2rem 1.1rem;
-    margin: .4rem;
-}
+        }
 
-    .subtitle{
-              padding-left: 0%;
-     
-    }
+
+        .custom-title {
+            font-size: 4rem;
+        }
+    
+        #word-guess {
+            margin-left: -15px;
+        }
+    
+        .wordbutton {
+            padding: .2rem 1.1rem;
+            margin: .25rem;
+        }
+    
+        .subtitle {
+            padding-left: 0%;
+    
+        }
     }
