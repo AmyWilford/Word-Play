@@ -104,6 +104,8 @@ function deleteWord(){
      $('#delete-word').click(function() {
 		$(`#${modalTitle.textContent}`).fadeToggle("slow", "linear");})
     // document.getElementById("word-bank").window.location.reload(true);
+    document.location.replace(`/Word-Game/wordbank.html`);
+
 }
 
 wordDeleteBtn.addEventListener('click', deleteWord)
