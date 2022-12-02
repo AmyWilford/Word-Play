@@ -82,7 +82,12 @@ function showButtons(){
 
 // set up API fetch for random word generator - https://api.api-ninjas.com/v1/randomword'
 function wordGen(){
-    fetch('https://api.api-ninjas.com/v1/randomword')
+    fetch('https://api.api-ninjas.com/v1/randomword',
+    {
+        method: "GET",
+        headers: {
+          "X-Api-Key": "fKJQ9FbuX0UGbknMMEa4jA==i8qElInRgcaEERw2"
+        }})
     .then(function (response) {
         if(response.ok) {
             return response.json();
