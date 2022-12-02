@@ -86,6 +86,14 @@ function deleteWord(){
     console.log(loadedStorage.length)
     // resave and load array to from local storage to update the list
     localStorage.setItem('word-bank', JSON.stringify(loadedStorage))
+
+    //  $(`${modalTitle.textContent}`).hide(1000)
+     $('#delete-word').click(function() {
+		$(`#${modalTitle.textContent}`).fadeToggle("slow", "linear");})
+    // document.getElementById("word-bank").window.location.reload(true);
+    document.location.replace(`/Word-Game/wordbank.html`);
+
+
 }
 
 // function to go back to home page
