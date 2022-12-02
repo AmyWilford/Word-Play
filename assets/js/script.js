@@ -1,4 +1,4 @@
-// Esatblish Gloabl Variables
+// Establish Global Variables
 let wordBank =loadStorage();
 let ranWordObj;
 let ranWord;
@@ -9,21 +9,17 @@ let hintDef;
 let antOne;
 let firstLetter;
 let lastLetter;
-// let turns = 0
-// let totalScore;
 let hints = [];
 let win;
 let hintCount=0;
-// let hintHeader = document.createElement('h5');
-
 let hintHeader;
 let score = loadScores();
+let guessWordArr;
 
 // Access HTML components
 let startBtn = document.getElementById('start-btn')
 let wbBtn = document.getElementById('wb-btn')
 let rulesBtn = document.getElementById('rules-btn')
-
 let homeScreenEl = document.getElementById('home-page')
 let gamePlayEL = document.getElementById('play-game')
 let nextClueBtn = document.getElementById('next-clue')
@@ -36,9 +32,8 @@ let bankAreaEl = document.querySelector('#bank-area')
 let gameplayWordButton = document.getElementById('gameplay-wordbankbutton');
 let gameBox = document.querySelector('.container')
 let guessedWordEl = document.querySelector('#guessed-word');
-// Function to start game play and reset styles
-let guessWordArr;
 
+// Function to start game play and reset styles
 function startGame(){
     guessWordArr = [];
     gameBox.style.borderWidth = '10px'
@@ -98,20 +93,17 @@ function wordGen(){
     })
     .then(function (data) {
     console.log(data)
-    // console.log(data[0])
     ranWord = data.word;
     ranWord = ranWord.toLowerCase();
     console.log(ranWord)
     console.log(ranWord.length)
-    // check to see if word is between 5 & 9 letters
+    // check to see if word is between 5 & 7 letters
     if (ranWord.length < 5){
         wordGen()
     } else if (ranWord.length > 7) {
         wordGen()
     }
-    // }  if (ranWord.length>9){
-    //     wordGen()
-    // }
+
    // check word bank to see if word already exists, refetch if it does, else continue
     else if (wordBank.includes(ranWord)){
         wordGen()
@@ -143,44 +135,27 @@ function getHints(ranWord){
         // makes sure all parts of word are taken from same usage
         let wordCat = Math.floor(Math.random() * data.length)
         hintDef = "def. "+ data[wordCat].shortdef
-        // hints.push(hintDef);
         let hintSyns = data[wordCat].meta.syns[Math.floor(Math.random()*this.length)]
         console.log(hintSyns)
         firstLetter = "It begins with " + ranWord.charAt(0).toUpperCase();
         lastLetter = "This is your last guess. It ends with " + ranWord.charAt(ranWord.length-1).toUpperCase()
         synOne ="syn.1: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
         synTwo ="syn.2: "+  hintSyns[Math.floor(Math.random() * hintSyns.length)]
-        
-        // runs only if word has antonyms
-        if (data[wordCat].meta.ants.length>0){
-             let hintAnts =data[wordCat].meta.ants[Math.floor(Math.random()*this.length)]
-             console.log(hintAnts)
-             antOne =  "antonym: " + hintAnts[Math.floor(Math.random() * hintAnts.length)]
-             console.log(antOne)
-            //  hints.push(antOne)
-            }
-
         let speechPart = data[wordCat].fl
         // Push all elements to hints array
-
         console.log(speechPart)  
         console.log(synOne)
         console.log(synTwo)
         console.log(hintDef)
         console.log(firstLetter)
         console.log(lastLetter)
-
-        // adds hints to an array to be used when revealing hints
-        // hints.push(synOne, synTwo)
         console.log("word: "+ ranWord)
-        // set s timeout so ap can cycle through non suitable words (due to length or not enough info)
-        // setTimeout(newHint,2000)
-
+        // adds hints to an object for local storage of wordbank
+          
         ranWordObj = {
             word: ranWord,
             speechPart: speechPart,
             synonym: hintSyns,
-            antonym: antOne,
             definition: hintDef,
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`       
          };
@@ -188,16 +163,14 @@ function getHints(ranWord){
         wordBank.push(ranWordObj);
         console.log(wordBank);
         localStorage.setItem('word-bank', JSON.stringify(wordBank));
-        // let hintSynonyms = synOne + ', '+ synTwo;
         let firstClue = speechPart + " ( " + ranWord.length + " ) \n"  + hintDef;
         // Push all items into hints array
         hints.push(firstClue, synOne, synTwo, firstLetter, lastLetter);
-        // Console log all available hints
         console.log(hints)
     };
 })}
 
-// Function to handle guess input - and reveal correct letters in letter bank
+// Function to handle guess input - and reveal correct letters and previous guesses in letter bank
 let commonLettersArr = [];
   submit.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -219,7 +192,7 @@ let commonLettersArr = [];
         let merged = [].concat.apply([],commonLettersArr);
         let onlyCommonLetters = [...new Set(merged)];
         letterbankEl.textContent = onlyCommonLetters;
-
+        // shows previous guesses in box
         guessWordArr.push(wordInput);
         console.log(guessWordArr)
         guessedWordEl.textContent = guessWordArr;
@@ -239,8 +212,6 @@ let commonLettersArr = [];
       }
     )
   
-// function to clear hint and guess area and replace with definition etc.
-
 // Function to generate hints (and adjust displayed items through game play)
 function newHint() {
     document.querySelector('h3').style.display ='none'
@@ -287,7 +258,7 @@ function saveScore(score){
     localStorage.setItem('player-score', JSON.stringify(score))
 }
 
-// Function to load storedscores on each game play so that scores can update each game
+// Function to load stored scores on each game play so that scores can update each game
 function loadScores() {
     let loadedScores = JSON.parse(localStorage.getItem('player-score'));
     return loadedScores;
@@ -302,12 +273,13 @@ function loadStorage() {
 function openWordbank(){
     document.location.href ='wordbank.html'
 }
+// function to open how-to-play page
 function openRulesPage(){
     document.location.href = 'rules.html'
 }
 
-// Wrap every letter in a span
-var textWrapper = document.querySelector('.ml2');
+// title animation
+let textWrapper = document.querySelector('.ml2');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 anime.timeline({loop: true})
